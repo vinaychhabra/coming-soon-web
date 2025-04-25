@@ -37,11 +37,14 @@ function App() {
   ];
 
   const skills = [
-    { name: "IT Support & System Administration", level: 95 },
-    { name: "User & Access Management", level: 90 },
-    { name: "Security & Compliance", level: 85 },
-    { name: "Automation & Optimization", level: 88 },
-    { name: "Full Stack Development", level: 92 }
+    { name: "HTML5, CSS3 & JavaScript", level: 95 },
+    { name: "React.js & Next.js", level: 92 },
+    { name: "Tailwind CSS & Styled Components", level: 90 },
+    { name: "API Integration & RESTful Services", level: 88 },
+    { name: "Responsive & Cross-Browser Design", level: 93 },
+    { name: "Git, GitHub & Version Control", level: 90 },
+    { name: "Performance Optimization & SEO", level: 85 },
+    { name: "Web Accessibility (WCAG)", level: 80 },
   ];
 
   return (
