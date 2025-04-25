@@ -138,7 +138,7 @@ function App() {
                   className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 blur-xl"
                 />
                 <h2 className="text-2xl md:text-3xl text-white font-light tracking-wider mb-4">
-                  IT Support Specialist
+                  Web Developer
                 </h2>
               </div>
               <p className="text-gray-300 max-w-2xl mx-auto text-lg leading-relaxed">
