@@ -45,7 +45,9 @@ function App() {
     { name: "Git, GitHub & Version Control", level: 90 },
     { name: "Performance Optimization & SEO", level: 85 },
     { name: "Web Accessibility (WCAG)", level: 80 },
+    { name: "Python (Backend & Automation)", level: 82 },
   ];
+  
 
   return (
     <div className="bg-gray-50">
