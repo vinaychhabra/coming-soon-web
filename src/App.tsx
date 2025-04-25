@@ -45,9 +45,7 @@ function App() {
     { name: "Git, GitHub & Version Control", level: 90 },
     { name: "Performance Optimization & SEO", level: 85 },
     { name: "Web Accessibility (WCAG)", level: 80 },
-    { name: "Python (Backend & Automation)", level: 82 },
   ];
-  
 
   return (
     <div className="bg-gray-50">
@@ -203,32 +201,30 @@ function App() {
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl font-bold mb-8 text-indigo-700 text-center">About Me</h2>
           <p className="text-lg text-gray-700 mb-6">
-            Passionate Web Developer with a strong foundation in building responsive, user-centric web applications using modern JavaScript frameworks. 
-            I specialize in React.js, Tailwind CSS, and full-stack integration to craft seamless digital experiences. 
-            I thrive in dynamic environments and enjoy transforming creative ideas into high-performing, scalable web solutions. 
-            I also leverage Python for backend APIs, automation scripts, and data handling to enhance functionality and efficiency.
+            Results-driven IT Support Specialist with extensive experience in Google Workspace administration, 
+            Jira management, and system troubleshooting. I specialize in managing large-scale IT environments 
+            and optimizing security protocols while providing efficient technical support to globally distributed teams.
           </p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
             <div className="text-center">
-              <Code2 className="w-12 h-12 mx-auto text-indigo-600 mb-4" />
-              <h3 className="font-semibold text-indigo-600">Frontend</h3>
+              <Monitor className="w-12 h-12 mx-auto text-indigo-600 mb-4" />
+              <h3 className="font-semibold text-indigo-600">IT Support</h3>
             </div>
             <div className="text-center">
-              <Layout className="w-12 h-12 mx-auto text-indigo-600 mb-4" />
-              <h3 className="font-semibold text-indigo-600">UI/UX Design</h3>
+              <Code2 className="w-12 h-12 mx-auto text-indigo-600 mb-4" />
+              <h3 className="font-semibold text-indigo-600">Development</h3>
+            </div>
+            <div className="text-center">
+              <Database className="w-12 h-12 mx-auto text-indigo-600 mb-4" />
+              <h3 className="font-semibold text-indigo-600">Database</h3>
             </div>
             <div className="text-center">
               <Server className="w-12 h-12 mx-auto text-indigo-600 mb-4" />
-              <h3 className="font-semibold text-indigo-600">Backend</h3>
-            </div>
-            <div className="text-center">
-              <Zap className="w-12 h-12 mx-auto text-indigo-600 mb-4" />
-              <h3 className="font-semibold text-indigo-600">Python</h3>
+              <h3 className="font-semibold text-indigo-600">System Admin</h3>
             </div>
           </div>
         </div>
       </section>
-
 
       {/* Skills Section */}
       <section id="skills" className="py-20 px-4 bg-white">
