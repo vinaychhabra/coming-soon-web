@@ -145,8 +145,7 @@ function App() {
                 </h2>
               </div>
               <p className="text-gray-300 max-w-2xl mx-auto text-lg leading-relaxed">
-                Transforming IT infrastructure with innovative solutions and 
-                optimizing security protocols for the digital age
+                Building modern web experiences with clean code, intuitive UI, and optimized performance — shaping the digital future one line at a time.
               </p>
             </motion.div>
 
