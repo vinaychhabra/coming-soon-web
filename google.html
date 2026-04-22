@@ -1,0 +1,2040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google Ads Interview Prep – Campaign Specialist</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e17;
+    --surface: #111623;
+    --surface2: #171e2e;
+    --border: #1e2840;
+    --accent: #4f8ef7;
+    --accent2: #f7c94f;
+    --accent3: #4ff7a8;
+    --text: #e2e8f8;
+    --muted: #6b7a9e;
+    --danger: #f74f6a;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .hero {
+    background: linear-gradient(135deg, #0d1525 0%, #111d35 60%, #0a1020 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 48px 32px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 320px; height: 320px;
+    background: radial-gradient(circle, rgba(79,142,247,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(22px, 5vw, 38px);
+    font-weight: 800;
+    line-height: 1.15;
+    color: #fff;
+    max-width: 620px;
+  }
+  .hero h1 span { color: var(--accent2); }
+  .hero-sub {
+    margin-top: 12px;
+    color: var(--muted);
+    font-size: 14px;
+    max-width: 500px;
+  }
+  .stats-row {
+    display: flex;
+    gap: 24px;
+    margin-top: 28px;
+    flex-wrap: wrap;
+  }
+  .stat {
+    background: rgba(79,142,247,0.08);
+    border: 1px solid rgba(79,142,247,0.2);
+    border-radius: 8px;
+    padding: 10px 18px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+  }
+  .stat strong { display: block; font-size: 20px; color: #fff; font-family: 'Syne', sans-serif; }
+
+  /* LAYOUT */
+  .container { max-width: 900px; margin: 0 auto; padding: 32px 20px 80px; }
+
+  /* CATEGORY NAV */
+  .cat-nav {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+    padding: 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+  .cat-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .cat-btn:hover, .cat-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+
+  /* SECTION HEADER */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 36px 0 20px;
+  }
+  .section-icon {
+    width: 38px; height: 38px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .section-count {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    margin-left: auto;
+  }
+
+  /* Q&A CARDS */
+  .qa-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .qa-card:hover { border-color: rgba(79,142,247,0.35); }
+  .qa-card.scenario { border-left: 3px solid var(--accent2); }
+  .qa-card.advanced { border-left: 3px solid var(--accent3); }
+
+  .qa-header {
+    padding: 16px 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    user-select: none;
+  }
+  .q-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    flex-shrink: 0;
+    margin-top: 2px;
+    min-width: 28px;
+  }
+  .q-text {
+    font-size: 14.5px;
+    font-weight: 500;
+    color: var(--text);
+    flex: 1;
+    line-height: 1.5;
+  }
+  .q-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .badge-scenario { background: rgba(247,201,79,0.15); color: var(--accent2); }
+  .badge-advanced { background: rgba(79,247,168,0.12); color: var(--accent3); }
+  .badge-core { background: rgba(79,142,247,0.12); color: var(--accent); }
+
+  .toggle-icon {
+    font-size: 16px;
+    color: var(--muted);
+    flex-shrink: 0;
+    margin-top: 1px;
+    transition: transform 0.25s;
+  }
+  .qa-card.open .toggle-icon { transform: rotate(180deg); }
+
+  .qa-body {
+    display: none;
+    padding: 0 20px 20px 62px;
+  }
+  .qa-card.open .qa-body { display: block; }
+
+  .answer-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .answer-text {
+    color: #bdc8e8;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .answer-text strong {
+    color: var(--accent2);
+    font-weight: 600;
+  }
+  .answer-text ul {
+    margin: 8px 0 8px 18px;
+  }
+  .answer-text li { margin-bottom: 5px; }
+  .tip-box {
+    margin-top: 14px;
+    background: rgba(79,247,168,0.06);
+    border: 1px solid rgba(79,247,168,0.18);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 13px;
+    color: #8be8c0;
+  }
+  .tip-box::before { content: '💡 Tip: '; font-weight: 600; }
+
+  /* PROGRESS BAR */
+  .progress-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .progress-label { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); white-space: nowrap; }
+  .progress-bar-bg { flex: 1; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+  .progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent3)); border-radius: 3px; transition: width 0.4s ease; width: 0%; }
+  .progress-pct { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--accent); min-width: 36px; text-align: right; }
+
+  .divider { height: 1px; background: var(--border); margin: 40px 0; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-label">Teleperformance · Campaign Specialist</div>
+  <h1>Google Ads<br><span>Interview Prep</span></h1>
+  <p class="hero-sub">Every likely question — Google Ads knowledge, product synergy, campaign strategy, and scenario-based challenges. Click any question to reveal a model answer.</p>
+  <div class="stats-row">
+    <div class="stat"><strong>60+</strong> Questions</div>
+    <div class="stat"><strong>6</strong> Categories</div>
+    <div class="stat"><strong>18</strong> Scenario-Based</div>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="progress-wrap">
+    <span class="progress-label">Reviewed</span>
+    <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill"></div></div>
+    <span class="progress-pct" id="progressPct">0%</span>
+  </div>
+
+  <div class="cat-nav">
+    <button class="cat-btn active" onclick="filterCat('all', this)">All Questions</button>
+    <button class="cat-btn" onclick="filterCat('fundamentals', this)">Google Ads Fundamentals</button>
+    <button class="cat-btn" onclick="filterCat('synergy', this)">Product Synergy</button>
+    <button class="cat-btn" onclick="filterCat('strategy', this)">Campaign Strategy</button>
+    <button class="cat-btn" onclick="filterCat('sales', this)">B2B Sales & Onboarding</button>
+    <button class="cat-btn" onclick="filterCat('kpi', this)">KPIs & Performance</button>
+    <button class="cat-btn" onclick="filterCat('scenario', this)">Scenario-Based</button>
+  </div>
+
+  <!-- =================== SECTION 1 =================== -->
+  <div class="section-header" data-cat="fundamentals">
+    <div class="section-icon" style="background:rgba(79,142,247,0.15);">🎯</div>
+    <div>
+      <div class="section-title">Google Ads Fundamentals</div>
+    </div>
+    <span class="section-count">12 questions</span>
+  </div>
+
+  <!-- Q1 -->
+  <div class="qa-card" data-cat="fundamentals" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">01</span>
+      <span class="q-text">Walk me through the main Google Ads campaign types and when you would use each one.</span>
+      <span class="q-badge badge-core">CORE</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        Google Ads offers several campaign types, each suited to different business goals:<br><br>
+        <strong>Search Campaigns</strong> — Text ads on Google Search results. Best for capturing high-intent buyers who are already searching for a product or service. Ideal for direct response and lead generation.<br><br>
+        <strong>Display Campaigns</strong> — Visual banner ads across the Google Display Network (millions of sites and apps). Best for brand awareness, retargeting, and reaching users earlier in the funnel.<br><br>
+        <strong>Shopping Campaigns</strong> — Product listing ads showing images, price, and store name. Essential for e-commerce businesses wanting to drive product sales.<br><br>
+        <strong>Video Campaigns (YouTube)</strong> — In-stream and discovery ads on YouTube. Best for storytelling, brand building, or reaching audiences by interest and demographics.<br><br>
+        <strong>Performance Max (PMax)</strong> — Google's AI-driven campaign that runs across all channels (Search, Display, YouTube, Gmail, Maps) simultaneously, using machine learning to optimize toward a conversion goal. Best when you have a clear conversion objective and sufficient data.<br><br>
+        <strong>App Campaigns</strong> — For mobile app installs and in-app actions across Google's entire network.
+        <div class="tip-box">When asked this at TP, tie each type to a client use case — e.g. "A local restaurant would start with Search and Maps; an e-commerce client would layer Shopping + PMax."</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="qa-card" data-cat="fundamentals" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">02</span>
+      <span class="q-text">How does the Google Ads auction work? What determines where your ad appears?</span>
+      <span class="q-badge badge-core">CORE</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        Every time someone searches on Google, an auction runs instantly. Your ad's position is determined by <strong>Ad Rank</strong>, which is calculated as:<br><br>
+        <strong>Ad Rank = Bid × Quality Score × Expected Impact of Extensions</strong><br><br>
+        <strong>Quality Score</strong> (1–10) is made up of three components:
+        <ul>
+          <li><strong>Expected Click-Through Rate (CTR)</strong> — how likely users are to click your ad</li>
+          <li><strong>Ad Relevance</strong> — how closely the ad matches the search intent</li>
+          <li><strong>Landing Page Experience</strong> — how relevant and fast the destination page is</li>
+        </ul>
+        This means a higher bid alone doesn't guarantee top position. A highly relevant ad with a great landing page can outrank a competitor with a higher bid. This is why optimizing Quality Score is central to reducing cost-per-click and improving ROI.
+        <div class="tip-box">This is foundational — expect this in almost every Google Ads interview. Practice explaining it as if teaching it to a client who has never advertised before.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="qa-card" data-cat="fundamentals" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">03</span>
+      <span class="q-text">What are match types in Google Ads and how do they affect campaign performance?</span>
+      <span class="q-badge badge-core">CORE</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        Match types control which searches trigger your ads:
+        <ul>
+          <li><strong>Broad Match</strong> — Widest reach; Google's AI matches to related searches, including synonyms and related topics. Highest volume but can attract irrelevant traffic. Works best with Smart Bidding.</li>
+          <li><strong>Phrase Match</strong> — Ads show for searches containing the meaning of your keyword. More targeted than broad but more flexible than exact. Good balance of reach and relevance.</li>
+          <li><strong>Exact Match</strong> — Ads only show for searches with the same intent as the exact keyword. Highest precision, lowest volume, typically highest CTR and conversion rate.</li>
+        </ul>
+        <strong>Negative keywords</strong> are equally important — they prevent ads from showing for irrelevant queries, protecting budget and improving Quality Score.<br><br>
+        A strong campaign usually uses a <strong>layered match type strategy</strong>: Exact for best-performing terms, Phrase for discovery, and Broad with Smart Bidding for scale — while maintaining a robust negative keyword list.
+      </div>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="qa-card" data-cat="fundamentals" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">04</span>
+      <span class="q-text">Explain the difference between CPC, CPM, CPA, and ROAS bidding strategies.</span>
+      <span class="q-badge badge-core">CORE</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        <strong>CPC (Cost Per Click) – Manual</strong>: You set the maximum you'll pay per click. Best for hands-on control when you're still learning what works. Good for new campaigns with limited data.<br><br>
+        <strong>CPM (Cost Per Thousand Impressions)</strong>: Pay per 1,000 views. Used in Display and YouTube campaigns focused on brand awareness where clicks aren't the goal.<br><br>
+        <strong>CPA (Cost Per Acquisition / Target CPA)</strong>: Google's Smart Bidding sets bids automatically to get conversions at or below your target cost. Requires at least 30–50 conversions/month to work effectively. Best for lead generation.<br><br>
+        <strong>ROAS (Return on Ad Spend / Target ROAS)</strong>: Google optimizes for revenue relative to spend. E.g., a 400% ROAS target means you want $4 back for every $1 spent. Requires robust conversion value tracking. Ideal for e-commerce.<br><br>
+        <strong>Maximize Conversions / Maximize Clicks</strong>: Fully automated — Google spends the budget to get the most conversions or clicks. Good for accounts with consistent budgets and clear goals.<br><br>
+        The right strategy depends on the campaign's stage and data maturity — early on, manual CPC; as data builds, move toward Smart Bidding.
+      </div>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="qa-card" data-cat="fundamentals" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">05</span>
+      <span class="q-text">What is a conversion in Google Ads and how is conversion tracking set up?</span>
+      <span class="q-badge badge-core">CORE</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        A <strong>conversion</strong> is a measurable action that a user takes after clicking an ad, aligned with a business goal. Examples include:
+        <ul>
+          <li>Form submission or lead inquiry</li>
+          <li>Purchase or checkout completion</li>
+          <li>Phone call from the ad or website</li>
+          <li>App download or in-app action</li>
+          <li>Newsletter signup or account creation</li>
+        </ul>
+        <strong>Setting up conversion tracking</strong> involves:
+        <ol style="margin-left:18px;">
+          <li>Going to Tools → Conversions in Google Ads</li>
+          <li>Defining the conversion action and its value (if applicable)</li>
+          <li>Installing the Google Ads conversion tag on the thank-you/confirmation page via Google Tag Manager or direct code</li>
+          <li>Verifying the tag is firing correctly</li>
+        </ol>
+        For new clients without a developer, <strong>Google Tag Manager</strong> is the recommended implementation path — it lets you deploy tags without touching code directly.<br><br>
+        Without conversion tracking, Smart Bidding cannot optimize effectively, and you cannot measure ROI. This is one of the first things I'd help a new client set up.
+        <div class="tip-box">At TP, new advertiser onboarding often starts with conversion setup. Frame this as a priority in your answer.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="qa-card" data-cat="fundamentals" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">06</span>
+      <span class="q-text">What is Quality Score, why does it matter, and how would you improve it?</span>
+      <span class="q-badge badge-core">CORE</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        <strong>Quality Score</strong> is Google's 1–10 rating of the relevance and quality of your keywords, ads, and landing pages. It directly impacts:
+        <ul>
+          <li><strong>Ad Rank</strong> — higher QS can place you above higher-bidding competitors</li>
+          <li><strong>Cost Per Click</strong> — higher QS means you pay less per click for the same position</li>
+        </ul>
+        <strong>To improve Quality Score:</strong><br><br>
+        <strong>1. CTR</strong>: Write compelling, relevant ad copy. Use numbers, offers, and strong CTAs. A/B test headlines regularly using Responsive Search Ads.<br><br>
+        <strong>2. Ad Relevance</strong>: Tightly theme your ad groups — each should focus on one topic with keywords that closely match the ad copy. Avoid dumping dozens of unrelated keywords into one ad group.<br><br>
+        <strong>3. Landing Page Experience</strong>: Ensure the landing page directly matches what the ad promises. Fast load time (Core Web Vitals), mobile-friendly design, clear CTA, and relevant content all matter. Use Google's PageSpeed Insights tool to diagnose issues.
+      </div>
+    </div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="qa-card" data-cat="fundamentals" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">07</span>
+      <span class="q-text">What is remarketing in Google Ads and how would you use it for a new advertiser?</span>
+      <span class="q-badge badge-core">CORE</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        <strong>Remarketing</strong> (also called retargeting) lets you show ads specifically to people who have previously visited your website or interacted with your brand. It works by placing a cookie or tag on site visitors and then targeting those users through Google Display Network or Search campaigns.<br><br>
+        <strong>Types of remarketing:</strong>
+        <ul>
+          <li><strong>Standard Remarketing</strong> — show display ads to past website visitors</li>
+          <li><strong>Dynamic Remarketing</strong> — show ads featuring the specific products/services a user viewed (powerful for e-commerce)</li>
+          <li><strong>RLSA (Remarketing Lists for Search Ads)</strong> — adjust Search bids or show different ads for users who've previously visited your site</li>
+          <li><strong>Customer Match</strong> — upload a customer email list to target existing customers or create similar audiences</li>
+        </ul>
+        <strong>For a new advertiser:</strong> I'd start by installing the remarketing tag (via Google Tag Manager) and building a "website visitors in last 30 days" audience. Even if the audience is initially small, it allows us to test messaging and build conversion data before scaling. As traffic grows, we can create segmented lists — cart abandoners, product page viewers, etc. — for more personalized campaigns.
+      </div>
+    </div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="qa-card" data-cat="fundamentals" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">08</span>
+      <span class="q-text">What are Responsive Search Ads (RSAs) and how do they differ from older Expanded Text Ads?</span>
+      <span class="q-badge badge-core">CORE</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        <strong>Responsive Search Ads (RSAs)</strong> are the current standard ad format in Google Search campaigns. You provide up to 15 headlines and 4 description lines, and Google's machine learning tests different combinations to find what performs best for each user's search query.<br><br>
+        <strong>Key differences from Expanded Text Ads (ETAs):</strong>
+        <ul>
+          <li>ETAs had a fixed structure: 3 headlines + 2 descriptions. You controlled the exact combination shown.</li>
+          <li>RSAs are flexible and adaptive — Google dynamically assembles the best combination for each auction.</li>
+          <li>ETAs were sunset by Google in 2022; RSAs are now the only editable text ad format.</li>
+        </ul>
+        <strong>Best practices for RSAs:</strong>
+        <ul>
+          <li>Write at least 8–10 truly distinct headlines (avoid repetition)</li>
+          <li>Include keywords in at least 2–3 headlines</li>
+          <li>Include a strong CTA in at least one headline and one description</li>
+          <li>Use "Pin" sparingly — only when a headline MUST appear in a specific position</li>
+          <li>Aim for an "Excellent" Ad Strength rating</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="qa-card" data-cat="fundamentals" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">09</span>
+      <span class="q-text">What are ad extensions (now called "assets") and why are they important?</span>
+      <span class="q-badge badge-core">CORE</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        <strong>Ad Assets (formerly Extensions)</strong> add extra information to your ads, making them larger, more useful, and more clickable — without extra cost per click. They improve Ad Rank because Google rewards ads that provide a better user experience.<br><br>
+        <strong>Key asset types and their uses:</strong>
+        <ul>
+          <li><strong>Sitelink Assets</strong> — Additional links below the ad (e.g., "Book a Demo," "View Pricing," "Contact Us") — great for directing users to specific pages</li>
+          <li><strong>Callout Assets</strong> — Short, non-clickable highlights (e.g., "Free Shipping," "24/7 Support") — boosts credibility</li>
+          <li><strong>Call Assets</strong> — Adds a phone number to mobile ads for direct calling — essential for service businesses</li>
+          <li><strong>Location Assets</strong> — Shows business address; great for local businesses driving foot traffic</li>
+          <li><strong>Structured Snippet Assets</strong> — Lists specific categories, products, or services under the ad</li>
+          <li><strong>Lead Form Assets</strong> — Lets users submit contact info directly from the SERP without visiting the website — great for new advertiser lead gen</li>
+          <li><strong>Image Assets</strong> — Adds visual images to Search ads</li>
+        </ul>
+        For new advertisers, I always recommend enabling as many relevant assets as possible — they increase ad real estate and provide more pathways to conversion.
+      </div>
+    </div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="qa-card" data-cat="fundamentals" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">10</span>
+      <span class="q-text">What is Performance Max (PMax) and when should a new advertiser use it?</span>
+      <span class="q-badge badge-core">CORE</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        <strong>Performance Max</strong> is Google's fully automated campaign type that runs across all Google channels simultaneously — Search, Display, YouTube, Gmail, Discover, and Google Maps — using a single campaign structure. Google's AI decides where, when, and to whom to show ads based on your conversion goals.<br><br>
+        <strong>Key features:</strong>
+        <ul>
+          <li>Requires conversion tracking to be set up (no PMax without it)</li>
+          <li>You provide "asset groups" — combinations of text, images, videos, and audience signals</li>
+          <li>More effective as it learns — typically takes 4–6 weeks to exit the learning phase</li>
+        </ul>
+        <strong>When it's a good fit for new advertisers:</strong>
+        <ul>
+          <li>They have a clear conversion goal (lead form, purchase)</li>
+          <li>They want maximum reach without managing multiple campaign types</li>
+          <li>They have strong creative assets (images, video)</li>
+        </ul>
+        <strong>When to be cautious:</strong> PMax offers limited visibility into where your budget is going. For very small budgets or brand-sensitive advertisers, starting with Search first gives more control before scaling into PMax.
+        <div class="tip-box">PMax is a hot topic in Google Ads right now. Showing you understand its strengths AND limitations signals advanced knowledge.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q11 -->
+  <div class="qa-card" data-cat="fundamentals" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">11</span>
+      <span class="q-text">What is the Google Keyword Planner and how do you use it?</span>
+      <span class="q-badge badge-core">CORE</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        <strong>Google Keyword Planner</strong> is a free tool within Google Ads used for keyword research and search volume forecasting. It helps:
+        <ul>
+          <li>Discover new keyword ideas related to a product or service</li>
+          <li>See monthly search volume ranges for specific keywords</li>
+          <li>Understand bid estimates (low and high range CPC)</li>
+          <li>Forecast expected impressions, clicks, and cost based on selected keywords and budget</li>
+        </ul>
+        <strong>How I use it during onboarding:</strong>
+        <ol style="margin-left:18px;">
+          <li>Start with the client's business description or landing page URL to generate initial keyword ideas</li>
+          <li>Filter by location (e.g., Toronto or Canada) and language</li>
+          <li>Identify high-intent keywords (e.g., "buy", "hire", "near me") vs. broad informational terms</li>
+          <li>Group keywords by theme for ad group structure</li>
+          <li>Use the forecast tool to validate the budget against expected results</li>
+        </ol>
+        It's one of the first tools I'd use with a new advertiser to align expectations on what a realistic budget can achieve in their market.
+      </div>
+    </div>
+  </div>
+
+  <!-- Q12 -->
+  <div class="qa-card" data-cat="fundamentals" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">12</span>
+      <span class="q-text">What is the Google Display Network (GDN) and how does it differ from Search?</span>
+      <span class="q-badge badge-core">CORE</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        The <strong>Google Display Network (GDN)</strong> is a collection of over 2 million websites, apps, and videos where Google can place display ads. It reaches approximately 90% of global internet users.<br><br>
+        <strong>Key differences vs. Search:</strong>
+        <ul>
+          <li><strong>Intent</strong>: Search targets users who are actively looking for something (high intent). GDN reaches users who are browsing other content (lower intent, but wider audience).</li>
+          <li><strong>Ad Format</strong>: Search = text ads. GDN = image, banner, responsive display ads, and video.</li>
+          <li><strong>Targeting</strong>: GDN targets by audience (interests, demographics, custom intent, similar audiences) or by placement (specific websites/apps). Search targets by keywords.</li>
+          <li><strong>Cost</strong>: GDN CPCs are typically much lower than Search. Good for cost-efficient awareness.</li>
+          <li><strong>Goal</strong>: GDN is best for brand awareness, product discovery, and remarketing. Search is best for direct response and conversions.</li>
+        </ul>
+        For a new advertiser, I'd usually start with Search for immediate ROI and add Display for remarketing once we have website traffic to retarget.
+      </div>
+    </div>
+  </div>
+
+  <!-- =================== SECTION 2 =================== -->
+  <div class="divider"></div>
+  <div class="section-header" data-cat="synergy">
+    <div class="section-icon" style="background:rgba(247,201,79,0.15);">🔗</div>
+    <div>
+      <div class="section-title">Product Synergy & Google Ecosystem</div>
+    </div>
+    <span class="section-count">8 questions</span>
+  </div>
+
+  <!-- Q13 -->
+  <div class="qa-card" data-cat="synergy" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">13</span>
+      <span class="q-text">How does Google Analytics 4 (GA4) connect with Google Ads, and why does this matter?</span>
+      <span class="q-badge badge-core">CORE</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        <strong>Google Analytics 4 (GA4)</strong> is Google's web analytics platform. When linked to Google Ads, it enables:<br><br>
+        <ul>
+          <li><strong>Richer Conversion Data</strong> — GA4 can pass conversion events back to Google Ads, so you can track micro-conversions (scroll depth, video views, engaged sessions) not just final sales</li>
+          <li><strong>Audience Sharing</strong> — GA4 audiences (e.g., users who viewed a pricing page but didn't convert) can be imported into Google Ads for RLSA and Display remarketing</li>
+          <li><strong>Full Funnel Visibility</strong> — See what users do after clicking an ad: pages visited, time on site, bounce rate — helping identify landing page issues</li>
+          <li><strong>Smart Bidding Signals</strong> — GA4 data enriches Google's AI bidding with more behavioral signals, improving optimization</li>
+        </ul>
+        For new advertisers, linking GA4 to Google Ads is one of the first setup steps I'd walk them through. It's essentially the nervous system connecting advertising activity to real business outcomes.
+        <div class="tip-box">Linking Google Ads + GA4 is almost always part of a new advertiser onboarding checklist at TP.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q14 -->
+  <div class="qa-card" data-cat="synergy" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">14</span>
+      <span class="q-text">Explain how Google Merchant Center, Shopping Ads, and Google Ads work together for an e-commerce client.</span>
+      <span class="q-badge badge-core">CORE</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        For an e-commerce advertiser, the ecosystem works as follows:<br><br>
+        <strong>1. Google Merchant Center (GMC)</strong> — The advertiser uploads their product catalog (name, price, image, availability, URL) into GMC as a product feed. Think of it as the "product database" for Google.<br><br>
+        <strong>2. Google Ads</strong> — The Shopping campaign in Google Ads connects to the Merchant Center feed. When users search for relevant products, Google pulls product details from the feed to create Shopping Ads automatically — no manual ad copy writing needed.<br><br>
+        <strong>3. Shopping Ads appear</strong> — At the top of search results with product image, price, store name, and ratings. These have higher purchase intent and typically strong conversion rates.<br><br>
+        <strong>Synergy:</strong> Feed quality in GMC directly impacts Shopping Ad performance. A well-optimized feed (accurate titles, rich descriptions, competitive pricing) improves relevance matching and Ad Rank in Google Ads auctions. GA4 then tracks what happens post-click.<br><br>
+        <strong>For a new e-commerce client</strong>, I'd help them set up GMC, verify their feed, link it to Google Ads, and run a Shopping or PMax campaign targeting their best-selling products first.
+      </div>
+    </div>
+  </div>
+
+  <!-- Q15 -->
+  <div class="qa-card" data-cat="synergy" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">15</span>
+      <span class="q-text">How does YouTube advertising complement a Google Search campaign for a B2B client?</span>
+      <span class="q-badge badge-core">CORE</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        <strong>YouTube and Search serve different stages of the buyer journey:</strong><br><br>
+        <strong>Search = Bottom of Funnel (BOFU)</strong> — The prospect is already aware of their problem and is actively searching for solutions. Search ads capture this high-intent moment.<br><br>
+        <strong>YouTube = Top/Middle of Funnel (TOFU/MOFU)</strong> — YouTube is where you build brand awareness, educate prospects, and warm them up before they reach the search stage.<br><br>
+        <strong>Synergy in practice:</strong>
+        <ul>
+          <li>A prospect sees a YouTube pre-roll ad explaining your B2B software solution and its ROI</li>
+          <li>Days later, they search "project management software for teams" on Google</li>
+          <li>Your Search ad appears — and because they've already seen your brand, CTR and conversion rate are higher</li>
+          <li>Using RLSA, you can bid more aggressively for users who watched your YouTube ad and then searched</li>
+        </ul>
+        Google Ads allows you to create <strong>Custom Intent Audiences</strong> and <strong>Video Reach Campaigns</strong> that target users based on their search behavior — bridging YouTube and Search for a full-funnel B2B strategy.
+      </div>
+    </div>
+  </div>
+
+  <!-- Q16 -->
+  <div class="qa-card" data-cat="synergy" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">16</span>
+      <span class="q-text">What is the role of Google My Business (Google Business Profile) in conjunction with Google Ads for local businesses?</span>
+      <span class="q-badge badge-core">CORE</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        <strong>Google Business Profile (GBP)</strong> — formerly Google My Business — is a free listing that shows your business on Google Maps and the Knowledge Panel in Search (name, address, hours, reviews, photos).<br><br>
+        <strong>Connection to Google Ads:</strong>
+        <ul>
+          <li><strong>Location Assets</strong> — Linking GBP to Google Ads enables Location Assets, which append your address and map pin to Search ads. This significantly increases ad size and visibility for local searches.</li>
+          <li><strong>Local Campaigns / PMax for Store Goals</strong> — These campaign types use GBP data to drive in-store visits and calls.</li>
+          <li><strong>Call Assets</strong> — Pulling your verified phone number through GBP adds credibility.</li>
+          <li><strong>Maps Ads</strong> — A linked GBP allows ads to appear within Google Maps when users search nearby.</li>
+        </ul>
+        For a local business (restaurant, dental clinic, retail store), I'd always start by ensuring GBP is fully optimized and linked to their Google Ads account before launching any local Search campaign. The organic GBP listing also reinforces the paid ad, increasing overall visibility on the SERP.
+      </div>
+    </div>
+  </div>
+
+  <!-- Q17 -->
+  <div class="qa-card" data-cat="synergy" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">17</span>
+      <span class="q-text">How do you use Customer Match and audience targeting to enhance campaign performance?</span>
+      <span class="q-badge badge-core">CORE</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        <strong>Customer Match</strong> lets advertisers upload a list of customer emails (or phone numbers) to Google Ads. Google matches them to signed-in Google users and creates a targetable audience.<br><br>
+        <strong>Use cases:</strong>
+        <ul>
+          <li><strong>Win-back campaigns</strong> — Target lapsed customers with a special offer via Display or YouTube</li>
+          <li><strong>Upsell/Cross-sell</strong> — Show current customers ads for complementary products</li>
+          <li><strong>Exclusion</strong> — Exclude existing customers from acquisition campaigns to avoid wasted spend</li>
+          <li><strong>Similar Audiences (Similar Segments)</strong> — Use the Customer Match list as a seed to find new users with similar profiles</li>
+        </ul>
+        <strong>Beyond Customer Match, audience targeting options include:</strong>
+        <ul>
+          <li><strong>In-Market Audiences</strong> — Users actively researching in a category (e.g., "In-Market for Business Software")</li>
+          <li><strong>Affinity Audiences</strong> — Broad interest categories</li>
+          <li><strong>Custom Segments</strong> — Target users who searched specific terms on Google or visited specific websites</li>
+          <li><strong>Life Events</strong> — Users going through major transitions (new job, moving, getting married)</li>
+        </ul>
+        For a new B2B advertiser, I'd combine In-Market + Custom Segments based on competitor URLs to reach the most relevant audience.
+      </div>
+    </div>
+  </div>
+
+  <!-- Q18 -->
+  <div class="qa-card" data-cat="synergy" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">18</span>
+      <span class="q-text">What is Google Tag Manager and why is it important in the Google Ads ecosystem?</span>
+      <span class="q-badge badge-core">CORE</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        <strong>Google Tag Manager (GTM)</strong> is a free tag management system that allows you to install, manage, and update tracking tags on a website without editing code directly.<br><br>
+        <strong>Why it matters in Google Ads:</strong>
+        <ul>
+          <li>Deploy the <strong>Google Ads conversion tag</strong> and <strong>GA4 tracking code</strong> quickly without developer dependency</li>
+          <li>Set up <strong>event tracking</strong> (button clicks, form submissions, page scrolls) to feed conversion data into Google Ads</li>
+          <li>Manage the <strong>remarketing tag</strong> for building audience lists</li>
+          <li>Maintain clean, organized tag governance — reducing conflicts and page load issues</li>
+        </ul>
+        <strong>In a client onboarding workflow:</strong>
+        <ol style="margin-left:18px;">
+          <li>Install GTM's container snippet on the client's website (one-time, minimal dev involvement)</li>
+          <li>Deploy all tracking tags through GTM — Google Ads conversion, GA4, remarketing</li>
+          <li>Test all tags with GTM's Preview mode before publishing</li>
+        </ol>
+        This setup makes future tag changes and optimizations much faster and reduces dependency on developers.
+      </div>
+    </div>
+  </div>
+
+  <!-- Q19 -->
+  <div class="qa-card" data-cat="synergy" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">19</span>
+      <span class="q-text">How does Smart Bidding use machine learning across the Google ecosystem?</span>
+      <span class="q-badge badge-advanced">ADVANCED</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        <strong>Smart Bidding</strong> is a subset of Google's automated bidding strategies that use machine learning to set bids at auction time, individually for every single search query. It pulls from a wide range of signals simultaneously:<br><br>
+        <strong>Signals used in Smart Bidding:</strong>
+        <ul>
+          <li>Device, location, time of day, day of week</li>
+          <li>Browser and operating system</li>
+          <li>Search query and match type</li>
+          <li>Audience membership (remarketing lists, in-market segments)</li>
+          <li>Ad characteristics (format, extension configuration)</li>
+          <li>Landing page quality and historical conversion data from GA4</li>
+        </ul>
+        This is why the <strong>entire Google ecosystem working together</strong> — GA4, Merchant Center, GTM conversion tracking, GBP — feeds better signals into Smart Bidding and produces better results. A siloed Google Ads account with no linked properties is working with a fraction of the available data.<br><br>
+        <strong>Key Smart Bidding strategies:</strong> Target CPA, Target ROAS, Maximize Conversions, Maximize Conversion Value. Each requires sufficient conversion history (typically 30–50/month) to function at full capacity.
+        <div class="tip-box">Mentioning "auction-time bidding" and the breadth of signals shows you understand Smart Bidding at a deeper level than most candidates.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q20 -->
+  <div class="qa-card" data-cat="synergy" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">20</span>
+      <span class="q-text">A client is running Search and Display but seeing poor overall results. How would you look at the full Google product stack to diagnose the issue?</span>
+      <span class="q-badge badge-scenario">SCENARIO</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        I'd work through a structured diagnostic across the full stack:<br><br>
+        <strong>Step 1 — Conversion Tracking (GTM + Google Ads)</strong>: Verify tags are firing correctly. Misconfigured conversion tracking is the most common root cause of "poor results" — the campaign may be performing fine but not reporting correctly.<br><br>
+        <strong>Step 2 — Search Campaign</strong>: Review Search Terms Report for irrelevant traffic; audit Quality Score components; check if match types are too broad; review landing page alignment.<br><br>
+        <strong>Step 3 — Display Campaign</strong>: Audit placement reports — often GDN wastes budget on mobile apps and parked domain sites. Add placement exclusions. Verify that audience targeting is meaningful and not "everyone."<br><br>
+        <strong>Step 4 — GA4</strong>: Check post-click behavior. Even if clicks are coming in, if bounce rate is very high or time on site is under 10 seconds, the issue may be the landing page, not the ads.<br><br>
+        <strong>Step 5 — Bid Strategy</strong>: Is the bidding strategy appropriate for the data volume? If there are under 30 conversions/month and they're on Target CPA, the algorithm is likely over-fitting or under-learning. Manual CPC or Maximize Clicks may be better temporarily.<br><br>
+        <strong>Step 6 — GBP (if local)</strong>: Confirm location assets are enabled and the GBP listing is accurate and well-reviewed.<br><br>
+        I'd present findings to the client in a prioritized action plan, starting with the highest-impact fix.
+      </div>
+    </div>
+  </div>
+
+  <!-- =================== SECTION 3 =================== -->
+  <div class="divider"></div>
+  <div class="section-header" data-cat="strategy">
+    <div class="section-icon" style="background:rgba(79,247,168,0.15);">📋</div>
+    <div>
+      <div class="section-title">Translating Marketing Strategy to Campaigns</div>
+    </div>
+    <span class="section-count">10 questions</span>
+  </div>
+
+  <!-- Q21 -->
+  <div class="qa-card" data-cat="strategy" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">21</span>
+      <span class="q-text">A client tells you their goal is "more brand awareness." How do you translate that into a Google Ads campaign?</span>
+      <span class="q-badge badge-scenario">SCENARIO</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        Brand awareness is a broad goal, so I'd start by <strong>scoping the objective more precisely</strong>. I'd ask: Who is the target audience? What geography? What does success look like in 90 days — is it impressions, video views, branded search volume?<br><br>
+        <strong>Translated into a campaign structure:</strong><br><br>
+        <strong>Primary: YouTube Video Campaign (Video Reach)</strong> — Use 15–30 second skippable in-stream ads targeting relevant In-Market and Affinity audiences. CPM bidding for efficient reach. Awareness at scale.<br><br>
+        <strong>Secondary: Google Display Network (Smart Display or Demand Gen)</strong> — Broad awareness across millions of sites with responsive display ads. Use demographic and interest targeting.<br><br>
+        <strong>Supporting: Branded Search Campaign</strong> — As awareness builds, branded search volume will increase. A branded Search campaign ensures you capture users who search your company name after seeing ads elsewhere.<br><br>
+        <strong>Measurement:</strong> Track Impressions, Unique Reach, View Rate (YouTube), Brand Search lift (Search Impression Share on branded terms), and eventually traffic and conversion improvements compared to baseline.<br><br>
+        I'd also set up a Brand Lift Study if budget allows, which Google provides for YouTube campaigns to measure actual lift in awareness and recall.
+      </div>
+    </div>
+  </div>
+
+  <!-- Q22 -->
+  <div class="qa-card" data-cat="strategy" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">22</span>
+      <span class="q-text">How do you structure a Google Ads account for a new advertiser starting from scratch?</span>
+      <span class="q-badge badge-core">CORE</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        A well-structured account follows this hierarchy: <strong>Account → Campaigns → Ad Groups → Ads → Keywords</strong><br><br>
+        <strong>My typical new account build:</strong><br><br>
+        <strong>Step 1 — Business Discovery</strong>: Understand their products/services, target customer, geography, budget, and primary conversion goal.<br><br>
+        <strong>Step 2 — Keyword Research</strong>: Use Keyword Planner to identify intent-rich keywords; group them by theme.<br><br>
+        <strong>Step 3 — Campaign Structure</strong>:
+        <ul>
+          <li>1 campaign per major product/service category or business goal (e.g., "Plumbing Services Toronto," "HVAC Installation")</li>
+          <li>Ad groups within each campaign = sub-themes (e.g., "Emergency Plumbing," "Drain Cleaning")</li>
+          <li>3–5 tightly themed keywords per ad group (avoid keyword stuffing)</li>
+          <li>1–2 RSAs per ad group + Asset extensions enabled</li>
+        </ul>
+        <strong>Step 4 — Conversion Setup</strong>: Install Google Ads conversion tag via GTM; link GA4.<br><br>
+        <strong>Step 5 — Bidding Strategy</strong>: Start with Maximize Clicks or Manual CPC while accumulating data; transition to Smart Bidding once 30+ conversions/month are established.<br><br>
+        <strong>Step 6 — Negative Keywords</strong>: Build an initial negative keyword list to prevent obvious irrelevant traffic from day one.<br><br>
+        <strong>Step 7 — Monitoring</strong>: Weekly Search Terms Report review, weekly performance check; optimize within the first 30 days based on real data.
+        <div class="tip-box">Being able to walk through this end-to-end shows you can actually onboard a new client — this is exactly the role you're applying for.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q23 -->
+  <div class="qa-card" data-cat="strategy" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">23</span>
+      <span class="q-text">A client has a monthly budget of $1,500. How would you allocate it across campaign types?</span>
+      <span class="q-badge badge-scenario">SCENARIO</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        With a $1,500/month budget, I'd prioritize based on <strong>proven ROI first, then layer in additional channels</strong> as performance data comes in. The exact split depends on their industry and goal, but a typical approach for a local service business:<br><br>
+        <strong>$1,100 (~73%) — Search Campaigns</strong><br>
+        This is where high-intent, "ready to buy" traffic lives. For most new advertisers, this delivers the fastest ROI. I'd split across 1–2 core service campaigns with tight keyword targeting and strong negative keyword lists.<br><br>
+        <strong>$300 (~20%) — Remarketing (Display or YouTube)</strong><br>
+        Retargeting past site visitors is highly cost-efficient. CPCs are low, and these users are already familiar with the brand. Even a small remarketing budget keeps the brand visible during the consideration phase.<br><br>
+        <strong>$100 (~7%) — Buffer/Testing</strong><br>
+        Keep a small amount for A/B testing new ad variations, trying new ad assets, or experimenting with an additional ad group.<br><br>
+        <strong>Key principle:</strong> I never set and forget a budget. I'd review performance weekly and reallocate toward what's converting. If Search is maxing out and performing well, I'd recommend increasing total budget rather than cutting it toward unproven channels.
+      </div>
+    </div>
+  </div>
+
+  <!-- Q24 -->
+  <div class="qa-card" data-cat="strategy" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">24</span>
+      <span class="q-text">What is a marketing funnel and how does Google Ads map to each stage?</span>
+      <span class="q-badge badge-core">CORE</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        The <strong>marketing funnel</strong> represents the buyer's journey from first awareness to final purchase:<br><br>
+        <strong>🔝 TOFU — Awareness (Top of Funnel)</strong>
+        <ul>
+          <li>Goal: Introduce your brand to new audiences</li>
+          <li>Google Ads tools: YouTube (Video Reach Campaigns), Display (Affinity/Demographics), Demand Gen campaigns</li>
+          <li>Metrics: Impressions, Unique Reach, View Rate</li>
+        </ul>
+        <strong>➡ MOFU — Consideration (Middle of Funnel)</strong>
+        <ul>
+          <li>Goal: Educate prospects, build intent</li>
+          <li>Google Ads tools: Display (In-Market/Custom Intent), YouTube (Product/Solution-focused ads), Search (informational keywords)</li>
+          <li>Metrics: Clicks, Engagement Rate, Time on Site (via GA4)</li>
+        </ul>
+        <strong>🎯 BOFU — Conversion (Bottom of Funnel)</strong>
+        <ul>
+          <li>Goal: Drive purchase, lead, or sign-up</li>
+          <li>Google Ads tools: Search (high-intent keywords), Shopping, RLSA, PMax</li>
+          <li>Metrics: Conversions, CPA, ROAS, Revenue</li>
+        </ul>
+        <strong>🔄 Retention — Post-Conversion</strong>
+        <ul>
+          <li>Goal: Repeat purchase, upsell, loyalty</li>
+          <li>Google Ads tools: Customer Match remarketing, Gmail Ads, YouTube</li>
+        </ul>
+        For new advertisers with limited budgets, I always recommend starting at BOFU — capture existing demand first, then expand upward as ROI is proven.
+      </div>
+    </div>
+  </div>
+
+  <!-- Q25 -->
+  <div class="qa-card" data-cat="strategy" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">25</span>
+      <span class="q-text">How do you approach keyword strategy for a B2B vs. B2C advertiser differently?</span>
+      <span class="q-badge badge-advanced">ADVANCED</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        <strong>B2C:</strong>
+        <ul>
+          <li>Shorter sales cycle — keywords can be product-specific and transactional (e.g., "buy running shoes online")</li>
+          <li>Higher search volume on product-level terms</li>
+          <li>Price and promotions are strong CTAs in ad copy</li>
+          <li>Broad and phrase match can work well with Smart Bidding due to data volume</li>
+          <li>Shopping campaigns often outperform Search for product-based B2C businesses</li>
+        </ul>
+        <strong>B2B:</strong>
+        <ul>
+          <li>Longer, more complex sales cycles — keywords should map to multiple buying stages (awareness, evaluation, purchase)</li>
+          <li>Lower search volumes, higher CPCs, but higher lifetime value per conversion</li>
+          <li>Target role-based or problem-based terms: "fleet management software for enterprises," "reduce SaaS churn"</li>
+          <li>Prefer Exact and Phrase match for control — B2B budgets rarely allow for broad experimentation</li>
+          <li>RLSA and audience layering are critical — B2B sales involve multiple stakeholders and touchpoints</li>
+          <li>Lead form assets and call assets are high-priority for B2B conversion actions</li>
+        </ul>
+        Given my background in B2B tech sales, I approach B2B Google Ads like I would a consultative sales conversation — understanding the problem the prospect is trying to solve and mapping ad messaging to that pain point rather than leading with product features.
+      </div>
+    </div>
+  </div>
+
+  <!-- Q26 -->
+  <div class="qa-card" data-cat="strategy" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">26</span>
+      <span class="q-text">What is A/B testing in Google Ads and how do you run a meaningful ad experiment?</span>
+      <span class="q-badge badge-core">CORE</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        <strong>A/B testing</strong> in Google Ads means running two or more variations of an element simultaneously to determine which performs better, then scaling the winner.<br><br>
+        <strong>What can be tested:</strong>
+        <ul>
+          <li>Ad copy headlines and descriptions (via RSA asset performance reports)</li>
+          <li>Landing pages (via Experiments tool in Google Ads)</li>
+          <li>Bid strategies (Manual CPC vs. Target CPA)</li>
+          <li>Campaign settings (e.g., broad match vs. phrase match)</li>
+          <li>Audience targeting overlays</li>
+        </ul>
+        <strong>How to run a meaningful experiment:</strong>
+        <ol style="margin-left:18px;">
+          <li>Change only ONE variable at a time — otherwise you can't attribute the difference</li>
+          <li>Run the test long enough to achieve statistical significance (typically 2–4 weeks minimum, or until you have ~100 conversions per variant)</li>
+          <li>Use Google Ads Experiments tool for campaign-level splits — it divides traffic 50/50 by cookie, ensuring clean separation</li>
+          <li>Define success metrics upfront: CTR, CPA, conversion rate</li>
+          <li>Implement the winner and document learnings for future tests</li>
+        </ol>
+        In my sales role at Battle Infinity, I applied similar testing logic to outreach templates — iterating on subject lines and CTAs to improve response rates. The same systematic approach applies to digital ad optimization.
+      </div>
+    </div>
+  </div>
+
+  <!-- Q27 -->
+  <div class="qa-card" data-cat="strategy" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">27</span>
+      <span class="q-text">How do you write compelling Google Search ad copy for a first-time advertiser?</span>
+      <span class="q-badge badge-core">CORE</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        Strong Search ad copy follows a few principles:<br><br>
+        <strong>1. Lead with the customer's goal, not the product</strong>: Instead of "We offer web hosting plans," write "Launch Your Website Today — Plans from $5/mo." Address the outcome the customer wants.<br><br>
+        <strong>2. Include the keyword naturally</strong>: Users scan for relevance. Headlines that mirror their search query have higher expected CTR and improve Quality Score.<br><br>
+        <strong>3. Create urgency or specificity</strong>: "Limited Time Offer," "Same-Day Service," specific numbers like "Save 30%" outperform vague claims.<br><br>
+        <strong>4. Differentiate</strong>: What makes this business better than the 3–5 competitors showing ads on the same page? Surface it in the copy — "Rated #1 in Toronto," "30-Day Money-Back Guarantee."<br><br>
+        <strong>5. Strong CTA</strong>: Tell users exactly what to do — "Get a Free Quote," "Book Online Now," "Start Free Trial."<br><br>
+        <strong>6. Use all available character limits</strong>: Don't leave headline or description fields blank in RSAs. More assets = more combinations tested = better performance over time.<br><br>
+        <strong>7. Match the landing page</strong>: The ad promise and the landing page headline should be nearly identical — any mismatch increases bounce rate and hurts Quality Score.
+        <div class="tip-box">Practice writing 5 different headlines for a local plumber or a software company before your interview. It shows hands-on creative ability.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q28 -->
+  <div class="qa-card" data-cat="strategy" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">28</span>
+      <span class="q-text">What is a negative keyword and give an example of a negative keyword strategy for a B2B software company.</span>
+      <span class="q-badge badge-core">CORE</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        <strong>Negative keywords</strong> prevent your ads from showing for irrelevant searches, protecting budget and improving campaign relevance.<br><br>
+        <strong>For a B2B SaaS company (e.g., project management software for businesses):</strong><br><br>
+        <strong>Add negatives for:</strong>
+        <ul>
+          <li>"Free" — unless offering a free trial (blocks searchers seeking free forever solutions)</li>
+          <li>"Student," "school," "homework" — consumer/education audience, not B2B</li>
+          <li>"Jobs," "careers," "salary" — job seekers, not buyers</li>
+          <li>"Tutorial," "how to use," "review" — information seekers, not purchase-intent</li>
+          <li>Competitor names (unless running a conquest campaign intentionally)</li>
+          <li>"DIY," "template download," "open source" — budget-conscious non-buyers</li>
+        </ul>
+        <strong>Best practice:</strong>
+        <ul>
+          <li>Review the Search Terms Report weekly for the first 4 weeks after launch</li>
+          <li>Add irrelevant terms as negatives at the ad group or campaign level</li>
+          <li>Build a Shared Negative Keyword List in Google Ads to apply across multiple campaigns</li>
+        </ul>
+        A strong negative keyword list can reduce wasted spend by 15–30% and significantly improve conversion rates in the first month.
+      </div>
+    </div>
+  </div>
+
+  <!-- Q29 -->
+  <div class="qa-card" data-cat="strategy" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">29</span>
+      <span class="q-text">A client has a seasonal business (e.g., a tax preparation service). How do you build a campaign strategy around seasonality?</span>
+      <span class="q-badge badge-scenario">SCENARIO</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        Seasonality strategy requires <strong>proactive planning, not reactive adjustments</strong>:<br><br>
+        <strong>Phase 1 — Pre-Season (4–6 weeks before peak)</strong>:
+        <ul>
+          <li>Ramp up budgets gradually — Smart Bidding needs time to learn during the transition</li>
+          <li>Launch awareness campaigns (Display, YouTube) to build brand familiarity before the urgency kicks in</li>
+          <li>Build remarketing audiences now — site visitors before peak season will be your warmest leads during peak</li>
+        </ul>
+        <strong>Phase 2 — Peak Season (e.g., Feb–Apr for tax prep)</strong>:
+        <ul>
+          <li>Maximize Search campaign budgets — high-intent searches surge</li>
+          <li>Use Countdown customizers in ad copy: "Only 14 days until Tax Deadline — File Now"</li>
+          <li>Increase bids on highest-converting ad groups; RLSA bid adjustments for returning visitors</li>
+          <li>Monitor daily — automated budget alerts prevent unexpected spend overruns</li>
+        </ul>
+        <strong>Phase 3 — Off-Season</strong>:
+        <ul>
+          <li>Reduce but don't eliminate ad spend — maintain branded Search campaign</li>
+          <li>Run brand awareness campaigns to stay top-of-mind</li>
+          <li>Use this time for account optimization, creative refresh, and next-season preparation</li>
+        </ul>
+        For Smart Bidding: Use Google's <strong>Seasonality Adjustments</strong> feature to inform the algorithm about expected spikes in conversion rates.
+      </div>
+    </div>
+  </div>
+
+  <!-- Q30 -->
+  <div class="qa-card" data-cat="strategy" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">30</span>
+      <span class="q-text">How would you build a campaign strategy for a new local restaurant with no prior advertising history?</span>
+      <span class="q-badge badge-scenario">SCENARIO</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        For a local restaurant starting from zero:<br><br>
+        <strong>Step 1 — Foundation</strong>: Set up and optimize Google Business Profile (free). This is the single highest-ROI action for a local business — it drives Maps results, reviews, and phone calls organically. Link GBP to Google Ads.<br><br>
+        <strong>Step 2 — Conversion Setup</strong>: Set up call tracking (via Google forwarding numbers), reservation link, or online order tracking as the conversion goal.<br><br>
+        <strong>Step 3 — Local Search Campaign</strong>:
+        <ul>
+          <li>Target: 5–10km radius around the restaurant</li>
+          <li>Keywords: "[cuisine] restaurant [city]," "best [cuisine] near me," "lunch spots [neighborhood]," "dinner reservations [city]"</li>
+          <li>Ad copy: Highlight signature dishes, hours, "Book a Table," Google rating if strong</li>
+          <li>Enable: Location Assets, Call Assets, Sitelink Assets (Menu, Book a Table, Hours)</li>
+        </ul>
+        <strong>Step 4 — Performance Max for Local (if budget allows)</strong>: Drives awareness and conversions across Search, Maps, Display, and YouTube simultaneously — Google optimizes for calls and direction requests.<br><br>
+        <strong>Budget recommendation</strong>: For Toronto, $600–$1,000/month minimum for meaningful Local Search results given competitive CPCs in the restaurant category.
+      </div>
+    </div>
+  </div>
+
+  <!-- =================== SECTION 4 =================== -->
+  <div class="divider"></div>
+  <div class="section-header" data-cat="sales">
+    <div class="section-icon" style="background:rgba(247,79,106,0.15);">🤝</div>
+    <div>
+      <div class="section-title">B2B Sales, Onboarding & Consultative Selling</div>
+    </div>
+    <span class="section-count">12 questions</span>
+  </div>
+
+  <!-- Q31 -->
+  <div class="qa-card" data-cat="sales" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">31</span>
+      <span class="q-text">How do you pitch Google Ads to a business owner who has never advertised online before?</span>
+      <span class="q-badge badge-scenario">SCENARIO</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        I'd lead with <strong>their business outcomes, not Google Ads features</strong>:<br><br>
+        <em>"Right now, when someone in Toronto searches for [what you sell], your competitors are the first thing they see. Google Ads puts you at the top of those results — so that customer finds you instead of them. You only pay when someone actually clicks your ad, and we can set a daily budget so you're never surprised by the bill. Most businesses start seeing results within the first few weeks."</em><br><br>
+        <strong>Key framing:</strong>
+        <ul>
+          <li><strong>Relevance</strong> — connect to their market and competitors specifically</li>
+          <li><strong>Low risk</strong> — emphasize pay-per-click (only pay for actual interest), budget control, no long-term contract</li>
+          <li><strong>Speed to results</strong> — unlike SEO which takes months, Search ads can be live within days</li>
+          <li><strong>Measurement</strong> — every dollar is tracked; they'll know exactly what they're getting</li>
+        </ul>
+        Then I'd ask discovery questions: "What's your biggest source of new customers right now? What would it mean for your business if you doubled that?" This shifts the conversation from a product pitch to a business growth discussion.
+        <div class="tip-box">Your Battle Infinity background selling web hosting/SaaS to B2B clients is directly applicable here. Use a real example of how you opened a cold conversation.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q32 -->
+  <div class="qa-card" data-cat="sales" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">32</span>
+      <span class="q-text">A client says "I tried Google Ads before and it didn't work." How do you handle this objection?</span>
+      <span class="q-badge badge-scenario">SCENARIO</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        This is a very common objection. My approach is to <strong>validate, investigate, and reframe</strong>:<br><br>
+        <strong>1. Validate</strong>: "That's completely fair — and honestly, when campaigns are set up without proper structure or tracking, it's easy to spend money without seeing results."<br><br>
+        <strong>2. Investigate</strong>: "Can I ask a few questions about what you ran before? Did you have conversion tracking set up? What campaign type was it — Search, Display, or both? What was the budget? Do you still have the account?"<br><br>
+        <strong>3. Diagnose</strong>: Most failed Google Ads experiences have identifiable causes:
+        <ul>
+          <li>No conversion tracking → couldn't measure or optimize</li>
+          <li>Broad match without negative keywords → budget wasted on irrelevant searches</li>
+          <li>Poor landing page → traffic came in but didn't convert</li>
+          <li>Budget too low for the market → insufficient data and impressions to compete</li>
+          <li>Wrong campaign type → Display for a direct response goal</li>
+        </ul>
+        <strong>4. Reframe</strong>: "What you experienced before is actually very common — and it's fixable. Here's what we'd do differently..." Then walk through a structured setup approach.<br><br>
+        The goal is to turn their negative experience into proof that this time will be different — because you're involved.
+      </div>
+    </div>
+  </div>
+
+  <!-- Q33 -->
+  <div class="qa-card" data-cat="sales" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">33</span>
+      <span class="q-text">How do you build rapport with a new client during the onboarding call?</span>
+      <span class="q-badge badge-core">CORE</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        Building rapport in a professional sales context is about being <strong>genuinely curious and customer-focused</strong>, not performative friendliness. My approach:<br><br>
+        <strong>1. Do your homework first</strong>: Before the call, spend 5–10 minutes on their website, Google Business Profile, and LinkedIn. Reference something specific in the first 60 seconds: "I looked at your website before this call — I noticed you've been in business since 2018 and specialize in X. Is that still your core focus?"<br><br>
+        <strong>2. Ask about their business before pitching anything</strong>: "Before I share what we can do for you, I'd like to understand your business better. What's your biggest challenge getting new customers right now?"<br><br>
+        <strong>3. Listen actively and reflect back</strong>: Paraphrase what they've said to demonstrate you've understood. "So what I'm hearing is that your main goal is getting more phone calls from local customers in Q3 — is that right?"<br><br>
+        <strong>4. Be direct about the process</strong>: New advertisers feel anxious about complexity and cost. Being transparent about how the onboarding works, what they'll need from their side, and what happens next builds trust immediately.<br><br>
+        <strong>5. Set clear next steps</strong>: Always close with a specific action: "I'll send over the account setup checklist today — if you can get me your website URL and confirm your budget by Thursday, we can have your first campaign live by next week."
+      </div>
+    </div>
+  </div>
+
+  <!-- Q34 -->
+  <div class="qa-card" data-cat="sales" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">34</span>
+      <span class="q-text">How do you identify upsell opportunities within an existing Google Ads client relationship?</span>
+      <span class="q-badge badge-advanced">ADVANCED</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        Upsell opportunities come from <strong>performance data combined with business context</strong>:<br><br>
+        <strong>Data-driven upsell triggers:</strong>
+        <ul>
+          <li><strong>Budget capping</strong> — If Search campaigns are hitting daily budget caps and converting well, the case for increasing budget is straightforward: "You're leaving impressions on the table. Here's how many potential leads you're missing daily."</li>
+          <li><strong>Impression Share lost to budget</strong> — If Search IS (Budget) is below 80%, there's untapped demand they're not capturing.</li>
+          <li><strong>High-performing keywords</strong> — If 3 keywords are driving 90% of conversions, expanding to related terms could scale results.</li>
+          <li><strong>No remarketing yet</strong> — If the client has website traffic but no Display or YouTube remarketing, this is a natural upsell: "You're doing great capturing new visitors — but 97% of people don't convert on the first visit. Remarketing keeps you in front of them."</li>
+          <li><strong>Seasonal opportunity</strong> — Upcoming peak season = budget increase opportunity.</li>
+        </ul>
+        <strong>My process:</strong> I tie every upsell to a business outcome, not a product feature. "Adding a Display remarketing campaign would likely bring your CPA down by recapturing lost leads — here's a rough projection based on your current data." Data-backed recommendations feel like advice, not sales pressure.
+        <div class="tip-box">Upsell and customer impact are KPIs at TP. Being able to articulate how you naturally find and frame upsell opportunities is critical for this role.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q35 -->
+  <div class="qa-card" data-cat="sales" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">35</span>
+      <span class="q-text">How do you handle a client who wants to reduce their Google Ads budget significantly?</span>
+      <span class="q-badge badge-scenario">SCENARIO</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        A client wanting to reduce budget usually signals one of three things: <strong>ROI concern, cash flow issue, or misaligned expectations</strong>. My approach is to identify which before reacting:<br><br>
+        <strong>Step 1 — Ask before defending</strong>: "Absolutely, we can adjust. Can you share what's driving this? Is it a performance concern, a budget constraint, or are you re-evaluating the channel?" Their answer determines my response.<br><br>
+        <strong>If it's ROI concern</strong>: Pull the actual performance data. Often clients who say "it's not working" haven't been shown the numbers clearly. Present CPA, conversion rate, and revenue attributed to the campaigns. If performance is genuinely weak, acknowledge it and present a specific plan to fix it.<br><br>
+        <strong>If it's cash flow</strong>: Propose smart cuts — pause underperforming ad groups rather than uniformly reducing budgets. Protect the highest-converting campaigns. "Let's reduce the Display budget and protect Search — that's where your conversions are coming from."<br><br>
+        <strong>If it's misaligned expectations</strong>: This is a communication issue. Re-establish what success looks like and agree on a timeline before evaluating results.<br><br>
+        <strong>What I avoid</strong>: Arguing or immediately accepting the reduction without a conversation. The goal is to act as a trusted advisor — sometimes that means agreeing to the cut, sometimes it means presenting a better alternative.
+      </div>
+    </div>
+  </div>
+
+  <!-- Q36 -->
+  <div class="qa-card" data-cat="sales" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">36</span>
+      <span class="q-text">What does consultative selling mean to you in the context of digital advertising?</span>
+      <span class="q-badge badge-core">CORE</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        Consultative selling means positioning yourself as a <strong>business advisor, not a product vendor</strong>. In digital advertising, this looks like:<br><br>
+        <ul>
+          <li><strong>Diagnosing before prescribing</strong>: Understanding the client's business model, revenue goals, competitive landscape, and target customer before recommending any campaign type or budget.</li>
+          <li><strong>Connecting products to outcomes</strong>: Not "you should add a Display campaign" but "your competitors are showing up when your past customers browse the web — here's how Display remarketing closes that gap and what ROI to expect."</li>
+          <li><strong>Being honest when something doesn't fit</strong>: If a client's budget is too low for a competitive market, I'd say so and suggest where to start realistically. Short-term honesty builds long-term trust and retention.</li>
+          <li><strong>Educating the client</strong>: Clients who understand why a campaign is structured a certain way are more likely to stay invested during the learning phase and less likely to make reactive changes that hurt performance.</li>
+        </ul>
+        In my sales role at Battle Infinity, I consistently found that clients who felt understood — not just sold to — had higher retention and were more open to upsells. The same principle applies here. The best campaigns are co-built with clients who are informed partners.
+      </div>
+    </div>
+  </div>
+
+  <!-- Q37 -->
+  <div class="qa-card" data-cat="sales" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">37</span>
+      <span class="q-text">A new client asks: "How long until I see results from Google Ads?" What do you say?</span>
+      <span class="q-badge badge-scenario">SCENARIO</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        I'd give an honest, tiered answer:<br><br>
+        <strong>"The short answer is: Search ads can start delivering traffic and leads within the first week — but the quality of results improves significantly over the first 4–8 weeks as the campaign learns."</strong><br><br>
+        <strong>The realistic timeline:</strong>
+        <ul>
+          <li><strong>Week 1–2 (Launch Phase)</strong>: Ads go live, early traffic comes in. Expect some waste as we identify irrelevant search terms. This is normal — it's data collection, not failure.</li>
+          <li><strong>Week 2–4 (Learning Phase)</strong>: Smart Bidding begins optimizing based on early conversion data. Google's system needs time to understand which users convert. Performance can fluctuate during this period.</li>
+          <li><strong>Month 2–3 (Optimization Phase)</strong>: With enough data, we refine bids, add negatives, expand what's working, and pause what isn't. This is usually when CPAs start dropping and ROI becomes clear.</li>
+          <li><strong>Month 3+ (Scaling Phase)</strong>: Proven campaign structure allows for confident budget increases and channel expansion.</li>
+        </ul>
+        <strong>Setting expectations upfront prevents churn</strong>. Clients who expect overnight results and don't get them pull budget too early, right before the campaign would have started performing.
+      </div>
+    </div>
+  </div>
+
+  <!-- Q38 -->
+  <div class="qa-card" data-cat="sales" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">38</span>
+      <span class="q-text">How do you manage a portfolio of multiple clients simultaneously while maintaining quality?</span>
+      <span class="q-badge badge-core">CORE</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        Managing a portfolio of clients requires <strong>systematic prioritization, not equal attention to all</strong>:<br><br>
+        <strong>My framework:</strong>
+        <ul>
+          <li><strong>Tiered attention</strong>: Segment clients by urgency — new campaigns in learning phase, clients approaching key deadlines, clients with budget changes, and stable accounts on autopilot. Allocate time accordingly.</li>
+          <li><strong>Daily alerts and rules</strong>: Set automated rules in Google Ads to flag anomalies (spend spikes, CTR drops, CPA outliers) — so I'm proactively notified instead of discovering issues during manual review.</li>
+          <li><strong>Weekly audit cadence</strong>: Even stable accounts get a quick weekly health check: impression share, conversion rate vs. last week, budget pacing.</li>
+          <li><strong>CRM discipline</strong>: I used ServiceNow in my previous role to log every client interaction, next steps, and follow-up dates. Here I'd apply the same discipline — whether in Salesforce, HubSpot, or internal tools — so no client communication falls through the cracks.</li>
+          <li><strong>Batching similar tasks</strong>: Pull all Search Term Reports at the same time, review all budgets together. Context-switching between accounts is inefficient — batching by task type saves 20–30% of time.</li>
+        </ul>
+        In my Battle Infinity role, I managed a pipeline of 50+ B2B accounts simultaneously. The discipline that kept quality high was proactive communication and structured task management, not just reaction to issues.
+      </div>
+    </div>
+  </div>
+
+  <!-- Q39 -->
+  <div class="qa-card" data-cat="sales" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">39</span>
+      <span class="q-text">How do you explain a technical concept like Quality Score to a non-technical client?</span>
+      <span class="q-badge badge-core">CORE</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        I'd use a simple analogy:<br><br>
+        <em>"Think of Google as a landlord who rents out advertising space on their search results page. But Google doesn't just give the space to the highest bidder — they also want to make sure the ads they show are actually helpful to their users. So they give every advertiser a 'relevance score' based on how good your ads and landing page are. The better your score, the less you pay per click — because Google rewards advertisers who deliver a good experience. It's like getting a discount on rent for being a great tenant."</em><br><br>
+        <strong>Principles for explaining technical concepts simply:</strong>
+        <ul>
+          <li>Avoid acronyms — say "how relevant your ad is" not "ad relevance component of Quality Score"</li>
+          <li>Use analogies from their world: restaurant owners understand "rent" and "customer satisfaction"; e-commerce owners understand "storefront presentation"</li>
+          <li>Connect the concept to money: "This means a higher score saves you money on every click"</li>
+          <li>Check for understanding: "Does that make sense? Any questions on how we'd improve it for your campaigns?"</li>
+        </ul>
+        The goal is for the client to feel informed and confident, not overwhelmed. An educated client is a retained client.
+      </div>
+    </div>
+  </div>
+
+  <!-- Q40 -->
+  <div class="qa-card" data-cat="sales" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">40</span>
+      <span class="q-text">Tell me about a time you turned a skeptical client into a believer. (STAR format)</span>
+      <span class="q-badge badge-scenario">SCENARIO</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer (STAR Framework)</div>
+      <div class="answer-text">
+        <strong>Situation</strong>: At Battle Infinity, I was assigned a B2B prospect — a mid-sized logistics company — who had previously tried web hosting upgrades from another vendor and felt burned. They were skeptical of any new technology investment and had been unresponsive to two previous outreach attempts.<br><br>
+        <strong>Task</strong>: My goal was to qualify the account and, if there was a fit, move them toward a white-label app solution that would streamline their client communication.<br><br>
+        <strong>Action</strong>: Instead of leading with a product demo, I did a 20-minute discovery call focused entirely on their operational pain points. I found out their biggest issue was client follow-up delays that were hurting their renewal rate. I then showed them specifically how the white-label app would reduce that friction, using numbers from a comparable client case study. I also offered to set up a 30-day trial with a limited scope — reducing their perceived risk.<br><br>
+        <strong>Result</strong>: They signed a 6-month contract within 3 weeks of that first discovery call. More importantly, they became a reference account and referred two other logistics companies within the first quarter. The key was listening first, pitching second — and connecting the product to a pain they cared about.
+        <div class="tip-box">Adapt this story using your own real experience from Battle Infinity. Specificity (industry, timeframe, outcome) makes STAR answers memorable.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q41 -->
+  <div class="qa-card" data-cat="sales" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">41</span>
+      <span class="q-text">The job description says "target-driven environment." How do you stay motivated when you're behind on targets?</span>
+      <span class="q-badge badge-core">CORE</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        I view targets as a navigational tool, not just a pressure point. When I'm behind, my first response is <strong>diagnosis, not panic</strong>:<br><br>
+        <ul>
+          <li>Where exactly am I in the pipeline? Is the lag in new outreach, in follow-ups, or in close rate?</li>
+          <li>Are there deals I can accelerate this week vs. ones that won't close this month regardless of effort?</li>
+          <li>Is the gap due to a structural issue (wrong ICP targeting, weak pitch) or execution (volume, timing)?</li>
+        </ul>
+        Once I understand the gap, I create a specific mini-plan for the remaining time — whether that means doubling outreach volume, reaching back out to warm leads who went quiet, or asking a senior rep to review my pitch.<br><br>
+        I also separate what I can control (activity, quality of each conversation, follow-through) from what I can't (client timelines, external factors). Staying focused on controllable actions keeps me productive even when outcomes are uncertain.<br><br>
+        In my role at Battle Infinity, there were months where the pipeline was slow due to industry seasonality. I used those periods to deepen relationships with existing accounts and build pipeline for the following month — which always resulted in a stronger comeback period.
+      </div>
+    </div>
+  </div>
+
+  <!-- Q42 -->
+  <div class="qa-card" data-cat="sales" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">42</span>
+      <span class="q-text">How do you prioritize which clients to call on a given day when you have 20+ in your portfolio?</span>
+      <span class="q-badge badge-core">CORE</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        I use a tiered prioritization system:<br><br>
+        <strong>Priority 1 — Time-sensitive / at-risk</strong>: Any client with an upcoming campaign launch, a billing issue, a poor performance week, or who hasn't responded in 5+ business days. These get contact attempts first.<br><br>
+        <strong>Priority 2 — Active optimization opportunities</strong>: Clients whose campaigns have data ready for a performance review or who are approaching a budget threshold. These conversations have clear value to deliver.<br><br>
+        <strong>Priority 3 — Upsell-ready accounts</strong>: Clients with strong performance who haven't expanded yet. These conversations are lower-urgency but high-value when done right.<br><br>
+        <strong>Priority 4 — Stable maintenance accounts</strong>: Clients on autopilot with no immediate issues. A brief check-in to maintain relationship — or an async update via email if call volume is high.<br><br>
+        In ServiceNow (my previous CRM), I logged the last contact date and next action for every account. I'd do the same here — whether in Salesforce or any internal system TP uses — so prioritization is data-driven, not memory-dependent.
+      </div>
+    </div>
+  </div>
+
+  <!-- =================== SECTION 5 =================== -->
+  <div class="divider"></div>
+  <div class="section-header" data-cat="kpi">
+    <div class="section-icon" style="background:rgba(79,247,168,0.15);">📊</div>
+    <div>
+      <div class="section-title">KPIs, Performance Analysis & Reporting</div>
+    </div>
+    <span class="section-count">8 questions</span>
+  </div>
+
+  <!-- Q43 -->
+  <div class="qa-card" data-cat="kpi" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">43</span>
+      <span class="q-text">What KPIs would you track for a Google Ads campaign and how do you report them to a client?</span>
+      <span class="q-badge badge-core">CORE</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        KPIs vary by campaign goal, but the core set for a performance-focused campaign:<br><br>
+        <strong>Top-level business KPIs (client cares about these):</strong>
+        <ul>
+          <li><strong>Conversions</strong> — Total leads or sales generated</li>
+          <li><strong>Cost Per Acquisition (CPA)</strong> — Cost per lead/sale; benchmarked against industry average</li>
+          <li><strong>Return on Ad Spend (ROAS)</strong> — Revenue generated per dollar spent (for e-commerce)</li>
+          <li><strong>Revenue attributed to campaigns</strong> — Pulled from GA4 or the client's CRM</li>
+        </ul>
+        <strong>Campaign health KPIs (I track these internally):</strong>
+        <ul>
+          <li>Click-Through Rate (CTR) — Indicator of ad relevance and copy quality</li>
+          <li>Quality Score — Indicator of account health</li>
+          <li>Impression Share — How much of the available market you're capturing</li>
+          <li>Conversion Rate — % of clicks that convert; identifies landing page issues</li>
+          <li>Search Terms Report — Qualitative indicator of targeting precision</li>
+        </ul>
+        <strong>Client reporting approach</strong>: I'd present KPIs in plain language with trend context ("your CPA dropped 22% vs. last month") and always anchor metrics to their business goal ("that means you got 18 new leads this month vs. 11 last month"). I avoid overwhelming clients with every metric — I lead with what changed, why, and what's next.
+      </div>
+    </div>
+  </div>
+
+  <!-- Q44 -->
+  <div class="qa-card" data-cat="kpi" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">44</span>
+      <span class="q-text">A campaign has a high CTR but low conversion rate. What are the possible causes?</span>
+      <span class="q-badge badge-scenario">SCENARIO</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        High CTR + Low Conversion Rate = the ad is compelling but something is broken between the click and the conversion. Possible causes:<br><br>
+        <strong>Landing Page Issues (most common):</strong>
+        <ul>
+          <li>Landing page doesn't match what the ad promised ("ad scent" mismatch)</li>
+          <li>Page loads slowly (each second of delay reduces conversions ~10%)</li>
+          <li>Not mobile-optimized (if 60%+ of traffic is mobile)</li>
+          <li>Confusing or unclear CTA</li>
+          <li>Form too long or asks for too much personal info upfront</li>
+          <li>Page feels untrustworthy (no reviews, no phone number, poor design)</li>
+        </ul>
+        <strong>Targeting Issues:</strong>
+        <ul>
+          <li>Keywords attracting the wrong audience (research intent vs. purchase intent)</li>
+          <li>Wrong geographic targeting — ads reaching areas outside service zone</li>
+        </ul>
+        <strong>Offer Issues:</strong>
+        <ul>
+          <li>Pricing is clearly uncompetitive vs. alternatives found on the page</li>
+          <li>No clear value proposition on the landing page</li>
+        </ul>
+        <strong>Tracking Issues:</strong>
+        <ul>
+          <li>Conversion tag misfiring — conversions may actually be happening but not being recorded</li>
+        </ul>
+        <strong>My diagnostic approach:</strong> Check GA4 for bounce rate, session duration, and which pages users exit from. Use Google's PageSpeed Insights. Run a heatmap (Hotjar or Microsoft Clarity — both free) on the landing page to see where users drop off.
+      </div>
+    </div>
+  </div>
+
+  <!-- Q45 -->
+  <div class="qa-card" data-cat="kpi" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">45</span>
+      <span class="q-text">What is Impression Share and how do you use it to identify growth opportunities?</span>
+      <span class="q-badge badge-advanced">ADVANCED</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        <strong>Impression Share (IS)</strong> is the percentage of total eligible impressions your ads actually received, compared to the maximum possible. It tells you how much of the available market you're capturing.<br><br>
+        <strong>Formula</strong>: IS = Impressions Received ÷ Total Eligible Impressions<br><br>
+        <strong>Two components tell you WHY you're losing IS:</strong>
+        <ul>
+          <li><strong>IS Lost (Budget)</strong> — You're not showing because you've hit your daily budget cap. Solution: increase budget or tighten targeting to improve efficiency.</li>
+          <li><strong>IS Lost (Rank)</strong> — You're not showing because your Ad Rank is too low vs. competitors. Solution: improve Quality Score (ad relevance, landing page) or increase bids.</li>
+        </ul>
+        <strong>How I use it strategically:</strong>
+        <ul>
+          <li>If a high-converting campaign has IS Lost (Budget) > 20%, that's a data-backed argument to the client for a budget increase: "You're missing roughly 1 in 5 potential customers due to budget constraints."</li>
+          <li>If IS Lost (Rank) is high, I focus on Quality Score improvements before recommending more spend</li>
+          <li><strong>Competitor IS</strong> — Shows whether competitors are gaining or losing market share; useful context for client strategy conversations</li>
+        </ul>
+        Impression Share converts abstract "performance" data into a clear opportunity narrative that clients immediately understand.
+      </div>
+    </div>
+  </div>
+
+  <!-- Q46 -->
+  <div class="qa-card" data-cat="kpi" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">46</span>
+      <span class="q-text">How do you calculate and present ROI from Google Ads to a business owner?</span>
+      <span class="q-badge badge-core">CORE</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        <strong>ROI calculation:</strong><br>
+        ROI = (Revenue from Ads − Ad Spend) ÷ Ad Spend × 100%<br><br>
+        Example: Spent $2,000. Generated 20 leads. 4 closed at $500 each = $2,000 revenue.<br>
+        ROI = ($2,000 − $2,000) ÷ $2,000 = 0% — but that's only counting first-transaction revenue.<br><br>
+        <strong>Better framing — Lifetime Value:</strong> If each client is worth $500/year and stays 3 years, the LTV is $1,500. Those 4 conversions represent $6,000 in LTV — 3x ROAS over lifetime, not just the first month.<br><br>
+        <strong>How I present this to a client:</strong>
+        <ul>
+          <li>Always connect to their business economics: "What is a customer worth to you over 12 months?"</li>
+          <li>Use simple ratios: "For every $1 you spent, you got $3 back this month"</li>
+          <li>Show trend: Is CPA going up or down? Is ROAS improving?</li>
+          <li>Compare to alternatives: "Your CPA of $85 compares favorably to the industry average of $120 for this category"</li>
+        </ul>
+        <strong>Important caveat:</strong> Not all conversions are easily attributed to Google Ads. I'd always discuss attribution modeling (Last Click vs. Data-Driven) to make sure we're giving credit accurately without over-claiming.
+      </div>
+    </div>
+  </div>
+
+  <!-- Q47 -->
+  <div class="qa-card" data-cat="kpi" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">47</span>
+      <span class="q-text">A client's campaign suddenly sees a 40% spike in cost with no increase in conversions. How do you investigate?</span>
+      <span class="q-badge badge-scenario">SCENARIO</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        A cost spike without conversion increase is a red flag requiring immediate investigation. My diagnostic checklist:<br><br>
+        <strong>1. Check the date range</strong>: Is this a seasonal spike? Did something change in the business (a promotion email went out, a press mention)? Check Google Trends for the category.<br><br>
+        <strong>2. Review Search Terms Report</strong>: Did a broad match keyword start picking up a sudden influx of irrelevant queries? This is a common culprit — one viral or trending term can drain budget fast.<br><br>
+        <strong>3. Check for unauthorized changes</strong>: Was there a recent campaign edit — new keywords added, match types changed, bid strategy adjustment? Review the Change History.<br><br>
+        <strong>4. Check auction insights</strong>: Did a new competitor enter the auction or significantly increase their bids, driving CPCs up?<br><br>
+        <strong>5. Check landing page status</strong>: Is the landing page down or slow? High traffic hitting a broken page would explain the spend with zero conversions.<br><br>
+        <strong>6. Check conversion tracking</strong>: Did the conversion tag stop firing? The spend may be real but conversions are just not being recorded.<br><br>
+        <strong>7. Check Google Ads recommendations</strong>: Did auto-applied recommendations make changes to the account without explicit approval?<br><br>
+        Immediate action: If the cause is clear (irrelevant search terms), add negatives and pause affected ad groups. Communicate transparently to the client about what happened and what was fixed.
+      </div>
+    </div>
+  </div>
+
+  <!-- Q48 -->
+  <div class="qa-card" data-cat="kpi" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">48</span>
+      <span class="q-text">What is attribution modeling in Google Ads and why does it matter?</span>
+      <span class="q-badge badge-advanced">ADVANCED</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        <strong>Attribution modeling</strong> determines how credit for a conversion is assigned across the multiple touchpoints a user had before converting.<br><br>
+        Example: A user sees your YouTube ad on Monday, clicks a Display ad Wednesday, and then clicks a Search ad Friday before purchasing. Who gets credit for the sale?<br><br>
+        <strong>Attribution models:</strong>
+        <ul>
+          <li><strong>Last Click</strong> — 100% credit to the last ad clicked (Search, in the example). Default historically, but undervalues upper-funnel channels.</li>
+          <li><strong>First Click</strong> — 100% credit to the first interaction (YouTube). Overvalues awareness touchpoints.</li>
+          <li><strong>Linear</strong> — Equal credit distributed across all touchpoints.</li>
+          <li><strong>Time Decay</strong> — More credit to touchpoints closer to conversion.</li>
+          <li><strong>Data-Driven (DDA)</strong> — Google's machine learning assigns credit based on actual observed conversion patterns in the account. Most accurate but requires sufficient conversion volume (50+/month). This is now the Google-recommended default.</li>
+        </ul>
+        <strong>Why it matters:</strong> Attribution affects how Smart Bidding optimizes. A last-click model will under-fund YouTube and Display campaigns that assist conversions — hurting overall funnel efficiency. Data-Driven Attribution gives a more holistic view and allows smarter budget allocation across the full funnel.
+      </div>
+    </div>
+  </div>
+
+  <!-- Q49 -->
+  <div class="qa-card" data-cat="kpi" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">49</span>
+      <span class="q-text">How do you set realistic expectations with a new client about what their budget can achieve?</span>
+      <span class="q-badge badge-core">CORE</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        Setting expectations is a mix of <strong>data, transparency, and education</strong>:<br><br>
+        <strong>Step 1 — Use Keyword Planner for benchmarks</strong>: Show the client the average CPC in their industry and geography. If they have a $500/month budget in a market where CPCs are $8, that's ~62 clicks/month — and if the landing page converts at 3%, that's roughly 2 leads. Be honest about this math upfront.<br><br>
+        <strong>Step 2 — Present a range, not a promise</strong>: "Based on industry benchmarks and your budget, I'd expect 5–15 leads in the first month — with the lower end more likely in the first 2–3 weeks as the campaign learns, and the higher end once we've optimized match types and bids."<br><br>
+        <strong>Step 3 — Explain the learning phase</strong>: New campaigns take 4–6 weeks to optimize. Results in month 3 will be materially better than month 1. Frame early weeks as investment in data, not just immediate ROI.<br><br>
+        <strong>Step 4 — Agree on success milestones</strong>: Rather than "let's see how it goes," I'd define: "In 30 days, we'll have a first performance review. If CPA is trending above $X, here's how we'll adjust." This creates a shared framework and reduces anxiety-driven decision-making.<br><br>
+        Under-promise and over-deliver beats over-promise every time — especially with new advertisers who are already skeptical.
+      </div>
+    </div>
+  </div>
+
+  <!-- Q50 -->
+  <div class="qa-card" data-cat="kpi" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">50</span>
+      <span class="q-text">How do you measure success for a brand awareness campaign vs. a lead generation campaign?</span>
+      <span class="q-badge badge-core">CORE</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        The measurement framework must match the campaign objective:<br><br>
+        <strong>Brand Awareness Campaign:</strong>
+        <ul>
+          <li><strong>Reach & Frequency</strong> — How many unique users saw the ad, and how many times on average?</li>
+          <li><strong>Impressions</strong> — Total volume of visibility</li>
+          <li><strong>View Rate</strong> (YouTube) — What % of people chose to watch vs. skip?</li>
+          <li><strong>Brand Lift</strong> — Google's survey-based study measuring recall, consideration, and purchase intent lift</li>
+          <li><strong>Indirect indicator</strong> — Branded search volume (did more people search the brand name after the campaign?)</li>
+        </ul>
+        <strong>Lead Generation Campaign:</strong>
+        <ul>
+          <li><strong>Conversions</strong> — Total lead form submissions, calls, or sign-ups</li>
+          <li><strong>Cost Per Lead (CPL/CPA)</strong> — Primary efficiency metric</li>
+          <li><strong>Conversion Rate</strong> — % of clicks that convert; reflects landing page quality</li>
+          <li><strong>Lead Quality</strong> (requires CRM integration) — Are Google Ads leads closing at a higher or lower rate than other channels? Revenue per lead is more important than volume alone.</li>
+          <li><strong>ROAS</strong> (if e-commerce) — Revenue generated per dollar spent</li>
+        </ul>
+        I always establish these metrics with clients before launch so we're both measuring the same thing. Misaligned metrics are a leading cause of client dissatisfaction.
+      </div>
+    </div>
+  </div>
+
+  <!-- =================== SECTION 6 =================== -->
+  <div class="divider"></div>
+  <div class="section-header" data-cat="scenario">
+    <div class="section-icon" style="background:rgba(247,79,106,0.15);">🎭</div>
+    <div>
+      <div class="section-title">Additional Scenario-Based Questions</div>
+    </div>
+    <span class="section-count">12 questions</span>
+  </div>
+
+  <!-- Q51 -->
+  <div class="qa-card scenario" data-cat="scenario" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">51</span>
+      <span class="q-text">A client's competitor is outbidding them on every keyword and their ads are dropping to position 3–5. What do you recommend?</span>
+      <span class="q-badge badge-scenario">SCENARIO</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        Position isn't the only metric that matters — <strong>profitability is</strong>. I'd reframe this conversation:<br><br>
+        <strong>1. Check actual performance at position 3–5</strong>: Is the CPA still acceptable? Are conversions happening? Many studies show positions 2–4 actually have comparable conversion rates to position 1, at lower CPCs.<br><br>
+        <strong>2. Improve Quality Score to improve rank without increasing bids</strong>: Upgrade ad copy for better CTR, tighten landing page alignment, improve page speed. A QS increase from 6 to 8 can achieve the same Ad Rank at 20–30% lower CPC.<br><br>
+        <strong>3. Target the long tail</strong>: Competitors usually fight over high-volume, short-tail keywords. Shift focus toward specific, less competitive long-tail keywords where CPCs are lower and conversion intent is often higher.<br><br>
+        <strong>4. Use Auction Insights</strong>: Understand which competitors are most aggressive. Look at their ads and identify positioning gaps.<br><br>
+        <strong>5. Time-of-day bidding</strong>: If the competitor's budget runs out by midday (common), increase bids during afternoons when you'll face less competition.<br><br>
+        <strong>6. Differentiated ad copy</strong>: Win on message, not just position. If the competitor leads on price, lead on service, guarantee, or speed.<br><br>
+        Recommending a pure bid war is usually not the right answer unless the client has deep pockets. Smart positioning beats expensive positioning.
+      </div>
+    </div>
+  </div>
+
+  <!-- Q52 -->
+  <div class="qa-card scenario" data-cat="scenario" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">52</span>
+      <span class="q-text">You've just onboarded a new advertiser who runs an online clothing boutique. Walk me through the first 30 days of their campaign.</span>
+      <span class="q-badge badge-scenario">SCENARIO</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        <strong>Week 1 — Setup & Launch:</strong>
+        <ul>
+          <li>Set up conversion tracking (purchases, add-to-carts) via GTM</li>
+          <li>Link Google Ads to GA4 and Google Merchant Center</li>
+          <li>Upload product feed to Merchant Center and verify it</li>
+          <li>Launch a Shopping campaign targeting their best-selling product categories</li>
+          <li>Launch a Search campaign for branded terms and high-intent category keywords ("women's summer dresses Canada")</li>
+          <li>Enable all relevant assets: sitelinks to product categories, callouts ("Free Returns," "Ships in 2 Days"), price extensions</li>
+          <li>Set bids: Maximize Clicks initially to generate data</li>
+        </ul>
+        <strong>Week 2 — First Data Review:</strong>
+        <ul>
+          <li>Review Search Terms Report — add initial negative keywords (irrelevant brands, sizes, colors they don't carry)</li>
+          <li>Check Shopping feed health in Merchant Center — fix any disapproved products</li>
+          <li>Review initial CTR and impression share</li>
+        </ul>
+        <strong>Week 3 — Optimization:</strong>
+        <ul>
+          <li>Pause underperforming Shopping product groups; increase bids on high-performers</li>
+          <li>A/B test ad copy variations for Search campaign</li>
+          <li>Set up remarketing audiences (product viewers, cart abandoners)</li>
+        </ul>
+        <strong>Week 4 — Review & Plan:</strong>
+        <ul>
+          <li>Full performance review: ROAS, conversion rate by product, top-performing search terms</li>
+          <li>Present findings to client with Month 2 recommendations</li>
+          <li>Propose adding a Display remarketing campaign if cart abandonment rate is high</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q53 -->
+  <div class="qa-card scenario" data-cat="scenario" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">53</span>
+      <span class="q-text">A client calls you angry because they received an unexpected $3,000 Google Ads bill. How do you handle this?</span>
+      <span class="q-badge badge-scenario">SCENARIO</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        This is a high-stakes client de-escalation situation. My approach:<br><br>
+        <strong>Step 1 — Acknowledge and de-escalate immediately</strong>: "I completely understand your frustration — an unexpected charge like that is serious and I want to get to the bottom of this with you right now."<br><br>
+        <strong>Step 2 — Don't get defensive while you investigate</strong>: "Let me pull up the account and the billing details while we talk. I want to make sure I understand exactly what happened before I say anything."<br><br>
+        <strong>Step 3 — Diagnose the cause:</strong>
+        <ul>
+          <li>Was a daily budget set too high or not set at all?</li>
+          <li>Was there a Smart Campaign that scaled without budget caps?</li>
+          <li>Was the billing threshold reached unexpectedly (Google charges when a threshold is hit, not just monthly)?</li>
+          <li>Was there unauthorized account access?</li>
+        </ul>
+        <strong>Step 4 — Present the facts clearly</strong>: Show exactly where the spend went — which campaigns, which days, which keywords.<br><br>
+        <strong>Step 5 — Take accountability if it was a setup error</strong>: If a budget wasn't properly capped and it was under our configuration, I'd acknowledge it and work immediately with the client on a path forward — including potentially requesting a Google credit (Google does offer credits in cases of technical issues).<br><br>
+        <strong>Step 6 — Prevent recurrence</strong>: Set up budget alerts in Google Ads to notify when 75% and 90% of monthly budget is reached. Walk the client through exactly how to read their billing section.
+        <div class="tip-box">This tests your composure and accountability under pressure. The answer that impresses is one that shows you own the problem and solve it, not deflect it.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q54 -->
+  <div class="qa-card scenario" data-cat="scenario" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">54</span>
+      <span class="q-text">A B2B SaaS company wants to use Google Ads but their product has a 6-month sales cycle. How do you structure campaigns for this?</span>
+      <span class="q-badge badge-scenario">SCENARIO</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        A long B2B sales cycle means Google Ads can't directly attribute revenue — but it can fill the top and middle of the funnel with qualified prospects. The strategy is built around <strong>micro-conversions and multi-touch attribution</strong>:<br><br>
+        <strong>Campaign structure by funnel stage:</strong>
+        <ul>
+          <li><strong>TOFU — Awareness</strong>: YouTube/Display targeting personas by job title (via custom segments or LinkedIn audience integration), industry, and company size. Goal: brand familiarity and thought leadership content views.</li>
+          <li><strong>MOFU — Consideration</strong>: Search campaigns for problem-aware keywords ("enterprise CRM alternative," "reduce customer churn B2B"). Offer: free whitepaper, ROI calculator, or webinar registration as the conversion action. These soft conversions are your MQL pipeline.</li>
+          <li><strong>BOFU — Decision</strong>: RLSA targeting users who downloaded the whitepaper or visited the pricing page. Offer: free demo, consultation, or trial. These are your SQLs.</li>
+          <li><strong>Remarketing sequence</strong>: Multi-stage retargeting — different messages at 7, 21, and 45 days post-visit to nurture along the funnel without annoying.</li>
+        </ul>
+        <strong>Measurement</strong>: Track MQL volume and SQL volume as primary conversion goals. Connect to CRM data to track which Google Ads campaigns eventually produce won deals — even if closed 6 months later.<br><br>
+        For clients with long sales cycles, patience and multi-touch measurement are critical. I'd set this expectation from day one.
+      </div>
+    </div>
+  </div>
+
+  <!-- Q55 -->
+  <div class="qa-card scenario" data-cat="scenario" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">55</span>
+      <span class="q-text">You're giving a client their first monthly performance review. The results are below the targets set at the start. How do you structure the conversation?</span>
+      <span class="q-badge badge-scenario">SCENARIO</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        This is one of the most important client conversations to get right. My approach:<br><br>
+        <strong>Before the call</strong>: Prepare thoroughly. Know exactly why performance undershot — have a diagnosis and a plan, not just the bad news. Never go into a performance review without solutions.<br><br>
+        <strong>Opening</strong>: Lead with context, not defensiveness. "Month 1 is almost always the hardest month because the campaign is in the learning phase — the data we collected this month is exactly what we need to improve Month 2."<br><br>
+        <strong>Present the numbers clearly</strong>: Be transparent. Show what the targets were, what was achieved, and the delta. Don't minimize it.<br><br>
+        <strong>Diagnose out loud with the client</strong>: "Here's what I found: CPCs in your category are running higher than the Keyword Planner estimated — the market is more competitive at this time of year. Also, our initial broad match keywords were pulling some irrelevant traffic which we've now corrected."<br><br>
+        <strong>Present a specific action plan</strong>: "For Month 2, here are the 3 changes I'm making and what impact I expect each to have." Be specific — not "I'll optimize" but "I'm adding 50 new negative keywords, switching the top 5 ad groups to phrase match, and rewriting the ad copy for the two lowest-CTR ad groups."<br><br>
+        <strong>Reset milestones if needed</strong>: If Month 1 targets were overly aggressive, honestly recalibrate for Month 2 with a new realistic target you're confident in delivering.<br><br>
+        Clients can handle bad news. What they can't handle is feeling uninformed or like there's no plan.
+      </div>
+    </div>
+  </div>
+
+  <!-- Q56 -->
+  <div class="qa-card scenario" data-cat="scenario" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">56</span>
+      <span class="q-text">A client insists on writing their own ad copy and the quality is poor. How do you handle this diplomatically?</span>
+      <span class="q-badge badge-scenario">SCENARIO</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        This is about preserving the relationship while protecting campaign performance. I'd:<br><br>
+        <strong>1. Acknowledge their ownership of the brand voice</strong>: "You know your customers better than anyone — and that's exactly why I want to make sure the copy we run reflects that expertise effectively."<br><br>
+        <strong>2. Use data, not opinion</strong>: Don't say "your copy isn't good." Say: "Google's Ad Strength rating for this version is 'Poor' — which means the algorithm will show it much less frequently than competitors with stronger copy. Here's what the tool flags as needing improvement."<br><br>
+        <strong>3. Offer a collaborative approach</strong>: "What if I drafted 3 alternative versions based on Google's best practices, and you pick the one that best represents your brand? That way we get the best of both — your message, optimized for performance."<br><br>
+        <strong>4. Show the impact</strong>: "A/B testing shows that ads with higher Ad Strength scores receive 6x more impressions on average. That's essentially free additional reach just from better copy structure."<br><br>
+        <strong>5. Run both and let the data decide</strong>: "Let's run your version and my version for 2 weeks and compare CTR. We let the customers vote with their clicks." This takes the ego out of it and makes performance the arbiter.
+      </div>
+    </div>
+  </div>
+
+  <!-- Q57 -->
+  <div class="qa-card scenario" data-cat="scenario" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">57</span>
+      <span class="q-text">A client has a $500/month budget and wants to advertise nationally across Canada. How do you advise them?</span>
+      <span class="q-badge badge-scenario">SCENARIO</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        I'd be honest about what $500/month can realistically achieve nationally — and redirect them toward a smarter strategy:<br><br>
+        <strong>The math problem</strong>: $500/month = ~$16/day. For competitive industries, national CPCs can range from $3–$15+. That's potentially only 1–5 clicks per day spread across the entire country — not enough data to optimize and not enough volume to drive meaningful leads.<br><br>
+        <strong>My recommendation</strong>: Start locally, prove ROI, then expand.<br><br>
+        <em>"With $500/month, you'll get much better results if we concentrate that budget on one city or region where your business has the strongest presence or the highest opportunity. We can dominate that market, build a proven campaign structure, and then use the CPA data from that market to make the case for a larger national budget."</em><br><br>
+        <strong>If they insist on national</strong>: Target only your highest-intent keywords nationally (branded + exact match), use long-tail terms with lower CPCs, and focus on a single campaign type (Search only — no Display) to maximize efficiency.<br><br>
+        The worst outcome is spreading $500 so thin that nothing gets any meaningful volume and the client concludes "Google Ads doesn't work."
+        <div class="tip-box">This shows you put the client's actual results above selling them more campaign types. That builds trust and long-term retention.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q58 -->
+  <div class="qa-card scenario" data-cat="scenario" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">58</span>
+      <span class="q-text">You notice one of your client's competitors is running false advertising claims in their Google Ads. What do you do?</span>
+      <span class="q-badge badge-scenario">SCENARIO</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        This is a situation requiring both proactive support for your client and adherence to proper channels:<br><br>
+        <strong>1. Document the evidence</strong>: Take screenshots of the competitor ads with timestamps. Note the exact claims being made.<br><br>
+        <strong>2. Inform the client immediately</strong>: This is their business and they should know. Present it factually without speculation.<br><br>
+        <strong>3. File a Google Ads policy complaint</strong>: Google has formal policies against misleading advertising. Submit through the "Report an Ad" mechanism in the ad or through Google's policy team. Google reviews complaints and takes action on clear violations.<br><br>
+        <strong>4. Advise the client on their response strategy</strong>:
+        <ul>
+          <li>If the false claim is comparative (e.g., "Better than [Client Name]"), they may have legal options via a lawyer — but this is outside our scope to advise on directly.</li>
+          <li>Within our scope: counter the claims in the client's own ad copy by highlighting verifiable differentiators. "Rated #1 by 500+ Reviews," "Certified by [Industry Body]" — factual, strong claims that contrast with competitor vagueness.</li>
+        </ul>
+        <strong>5. What I don't do</strong>: Respond in kind with aggressive counter-claims that could violate Google's own policies. Stay ethical and within Google's advertising guidelines.<br><br>
+        My role is to protect the client's interests professionally and within the rules of the platform.
+      </div>
+    </div>
+  </div>
+
+  <!-- Q59 -->
+  <div class="qa-card scenario" data-cat="scenario" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">59</span>
+      <span class="q-text">Describe how you would create a Google Ads strategy for a new immigration law firm in Toronto.</span>
+      <span class="q-badge badge-scenario">SCENARIO</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        Immigration law is a high-trust, high-intent category. Here's the strategy:<br><br>
+        <strong>Conversion goal</strong>: Free consultation booking (phone call or online form)<br><br>
+        <strong>Search Campaign — Core services:</strong>
+        <ul>
+          <li>Keywords: "immigration lawyer Toronto," "Express Entry consultant Toronto," "work permit lawyer Ontario," "PR application lawyer Canada," "study permit lawyer Toronto"</li>
+          <li>Match types: Exact + Phrase, with a strong negative list (no "DIY," "free," "form download," "government")</li>
+          <li>Ad copy: Emphasize credentials, languages spoken (huge differentiator for immigrant communities), number of successful cases, "Free Initial Consultation"</li>
+        </ul>
+        <strong>Assets to enable</strong>: Call Assets (critical — phone calls are primary conversion), Location Assets (link to GBP), Sitelinks ("Express Entry," "Family Sponsorship," "Work Permits," "Book a Consultation"), Callouts ("Multilingual Team," "20+ Years Experience")<br><br>
+        <strong>Audience strategy</strong>: Layer In-Market audiences for "Legal Services" + Custom Segments based on immigration-related search terms and government immigration website URLs<br><br>
+        <strong>Compliance note</strong>: Legal advertising has specific Google policies. All ads must comply with the requirement to use a licensed lawyer or regulated consultant — I'd verify this with the client upfront.<br><br>
+        <strong>Budget estimate</strong>: Toronto legal CPCs are high ($15–$40+). Minimum $2,000–$3,000/month to be competitive in Search.
+      </div>
+    </div>
+  </div>
+
+  <!-- Q60 -->
+  <div class="qa-card scenario" data-cat="scenario" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">60</span>
+      <span class="q-text">You have 20 clients to manage, all in different industries. How do you quickly get up to speed on a new client's industry to give relevant advice?</span>
+      <span class="q-badge badge-scenario">SCENARIO</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        Managing diverse industries is a reality of this role and requires a systematic approach to rapid industry orientation:<br><br>
+        <strong>Step 1 — Client's own assets (20 min)</strong>: Read the website thoroughly. Review their Google Business Profile reviews and ratings. Look at their top organic search rankings (via a quick search). This tells you: what they sell, how they position themselves, who their customer is, and what competitors they're already up against.<br><br>
+        <strong>Step 2 — Keyword Planner (15 min)</strong>: Enter their URL or core product description. The keyword suggestions and CPC ranges immediately paint a picture of industry competition and search behavior.<br><br>
+        <strong>Step 3 — Competitor ad audit (10 min)</strong>: Google their main keywords and study the ads on the first page. What are competitors emphasizing? Pricing, speed, certifications, reviews? This quickly reveals category norms and positioning opportunities.<br><br>
+        <strong>Step 4 — Google Ads industry benchmarks</strong>: Look up industry average CTR, conversion rate, and CPA benchmarks (WordStream and Google publish these by industry). This sets expectation baselines before the first conversation.<br><br>
+        <strong>Step 5 — Ask the client</strong>: In discovery, explicitly ask: "Who is your ideal customer? What pain point are they solving with you? Who are your top 3 competitors?" In 15 minutes, a good discovery call closes most knowledge gaps.<br><br>
+        I don't need to be an expert in every industry — I need to ask the right questions and use the right tools to get smart fast.
+      </div>
+    </div>
+  </div>
+
+  <!-- Q61 -->
+  <div class="qa-card scenario" data-cat="scenario" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">61</span>
+      <span class="q-text">Why do you want to work at Teleperformance in this specific role?</span>
+      <span class="q-badge badge-core">CORE</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        I'd structure this around genuine alignment — skills, growth, and mission:<br><br>
+        <em>"What draws me specifically to this role is the combination of two things I'm genuinely strong at: digital advertising strategy and consultative sales. My background in B2B tech sales, where I managed client portfolios and sold data-driven solutions, maps directly to what this role requires — helping new advertisers understand and get results from a complex product like Google Ads.</em><br><br>
+        <em>What's compelling about Teleperformance specifically is the scale — working within a program that supports Google's advertiser onboarding means I'm contributing to campaigns that will actually matter for businesses. I also appreciate that TP has a clear career path — the structured development plan is important to me because I want to grow in the digital marketing and account management direction long-term.</em><br><br>
+        <em>The Yonge-Eglinton location is also practical for me — I'm nearby, which means I can show up fully and consistently."</em><br><br>
+        <div class="tip-box">Interviewers at TP will likely ask this in a screening call. Have this answer tight and specific — not generic "I love digital marketing." Show you read the job description and connect your background precisely.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q62 -->
+  <div class="qa-card scenario" data-cat="scenario" onclick="toggle(this)">
+    <div class="qa-header">
+      <span class="q-num">62</span>
+      <span class="q-text">Where do you see yourself in 2 years in a role like this?</span>
+      <span class="q-badge badge-core">CORE</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="qa-body">
+      <div class="answer-label">Model Answer</div>
+      <div class="answer-text">
+        <em>"In 2 years, I'd want to be at a senior level within this team — consistently hitting the top end of the KPI targets, taking ownership of more complex or higher-value accounts, and potentially supporting newer team members as they onboard.</em><br><br>
+        <em>On the skill side, I'd aim to deepen my Google Ads expertise to a point where I'm certified across all major product areas — Search, Display, Measurement, and Shopping. I'd also want to be comfortable with GA4 analysis at a deeper level, connecting campaign data to real business outcomes for clients.</em><br><br>
+        <em>TP's structure — with its vertical and horizontal growth paths — is actually one of the reasons I'm interested in this role specifically. I'm not looking to leave after a year; I want to build expertise within a stable organization where my growth is supported."</em><br><br>
+        <div class="tip-box">TP values retention — showing ambition within the company rather than using it as a stepping stone is the right tone here.</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end container -->
+
+<script>
+  function toggle(card) {
+    const wasOpen = card.classList.contains('open');
+    card.classList.toggle('open', !wasOpen);
+    updateProgress();
+  }
+
+  function filterCat(cat, btn) {
+    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    document.querySelectorAll('.qa-card').forEach(card => {
+      if (cat === 'all' || card.dataset.cat === cat) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    document.querySelectorAll('.section-header').forEach(h => {
+      const c = h.dataset.cat;
+      if (cat === 'all' || c === cat || c === undefined) {
+        h.style.display = '';
+      } else {
+        h.style.display = 'none';
+      }
+    });
+
+    document.querySelectorAll('.divider').forEach(d => {
+      d.style.display = cat === 'all' ? '' : 'none';
+    });
+  }
+
+  function updateProgress() {
+    const all = document.querySelectorAll('.qa-card').length;
+    const opened = document.querySelectorAll('.qa-card.open').length;
+    const pct = Math.round((opened / all) * 100);
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressPct').textContent = pct + '%';
+  }
+</script>
+</body>
+</html>
